@@ -1,0 +1,29 @@
+[project]
+name = "skurious"
+version = "0.1.0"
+description = "Sidereal sky engine: nakshatra prints, kundali, and machine-checkable dating claims"
+requires-python = ">=3.12"
+license = { text = "AGPL-3.0-or-later" }
+authors = [{ name = "Piyush", email = "piyushmodi2118@gmail.com" }]
+dependencies = [
+    "pyswisseph>=2.10.3.2",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+    "pillow>=10.3",
+]
+
+[project.scripts]
+sk = "skurious.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["uv_build>=0.11.21,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

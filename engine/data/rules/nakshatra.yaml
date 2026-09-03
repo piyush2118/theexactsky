@@ -1,0 +1,45 @@
+id: nakshatra-v1
+title: The 27 nakshatras
+source: >-
+  Names, lords, gana, yoni and nadi follow B. V. Raman, "Muhurtha" (Ch. II) and
+  "Hindu Predictive Astrology"; the pada naming syllables follow the standard
+  108-syllable table as given in Raman and in K. S. Krishnamurti,
+  "Fundamental Principles of Astrology". Where a text gives a variant
+  transliteration the Devanagari is authoritative.
+note: >-
+  The lord cycle (Ketu, Venus, Sun, Moon, Mars, Rahu, Jupiter, Saturn, Mercury)
+  repeats three times over the 27. Nadi does something different: it zigzags
+  over triples -- Adi, Madhya, Antya forward, then Antya, Madhya, Adi backward,
+  nine times -- which gives nine of each. Reading it as a repeating period-9
+  cycle puts Magha in Adi instead of Antya. The tests assert both structures.
+
+boundaries: equal          # 360/27 = 13°20' each; unequal schemes are separate files
+
+nakshatras:
+  - {n: 1,  deva: "अश्विनी",        iast: "Aśvinī",             lord: ketu,    gana: deva,     yoni: horse,    yoni_sex: m, nadi: adi,    deity: "Aśvinī Kumāras", syllables: ["चू", "चे", "चो", "ला"], syllables_iast: ["Chu", "Che", "Cho", "La"]}
+  - {n: 2,  deva: "भरणी",          iast: "Bharaṇī",            lord: venus,   gana: manushya, yoni: elephant, yoni_sex: m, nadi: madhya, deity: "Yama",           syllables: ["ली", "लू", "ले", "लो"], syllables_iast: ["Li", "Lu", "Le", "Lo"]}
+  - {n: 3,  deva: "कृत्तिका",        iast: "Kṛttikā",            lord: sun,     gana: rakshasa, yoni: sheep,    yoni_sex: f, nadi: antya,  deity: "Agni",           syllables: ["आ", "ई", "उ", "ए"],   syllables_iast: ["A", "I", "U", "E"]}
+  - {n: 4,  deva: "रोहिणी",         iast: "Rohiṇī",             lord: moon,    gana: manushya, yoni: serpent,  yoni_sex: m, nadi: antya,  deity: "Prajāpati",      syllables: ["ओ", "वा", "वी", "वू"], syllables_iast: ["O", "Va", "Vi", "Vu"]}
+  - {n: 5,  deva: "मृगशीर्ष",        iast: "Mṛgaśīrṣa",          lord: mars,    gana: deva,     yoni: serpent,  yoni_sex: f, nadi: madhya, deity: "Soma",           syllables: ["वे", "वो", "का", "की"], syllables_iast: ["Ve", "Vo", "Ka", "Ki"]}
+  - {n: 6,  deva: "आर्द्रा",          iast: "Ārdrā",              lord: rahu,    gana: manushya, yoni: dog,      yoni_sex: f, nadi: adi,    deity: "Rudra",          syllables: ["कू", "घ", "ङ", "छ"],   syllables_iast: ["Ku", "Gha", "Ṅa", "Chha"]}
+  - {n: 7,  deva: "पुनर्वसु",        iast: "Punarvasu",          lord: jupiter, gana: deva,     yoni: cat,      yoni_sex: f, nadi: adi,    deity: "Aditi",          syllables: ["के", "को", "हा", "ही"], syllables_iast: ["Ke", "Ko", "Ha", "Hi"]}
+  - {n: 8,  deva: "पुष्य",          iast: "Puṣya",              lord: saturn,  gana: deva,     yoni: sheep,    yoni_sex: m, nadi: madhya, deity: "Bṛhaspati",      syllables: ["हु", "हे", "हो", "डा"], syllables_iast: ["Hu", "He", "Ho", "Da"]}
+  - {n: 9,  deva: "आश्लेषा",        iast: "Āśleṣā",             lord: mercury, gana: rakshasa, yoni: cat,      yoni_sex: m, nadi: antya,  deity: "Sarpas",         syllables: ["डी", "डू", "डे", "डो"], syllables_iast: ["Di", "Du", "De", "Do"]}
+  - {n: 10, deva: "मघा",           iast: "Maghā",              lord: ketu,    gana: rakshasa, yoni: rat,      yoni_sex: m, nadi: antya,  deity: "Pitṛs",          syllables: ["मा", "मी", "मू", "मे"], syllables_iast: ["Ma", "Mi", "Mu", "Me"]}
+  - {n: 11, deva: "पूर्वफाल्गुनी",    iast: "Pūrva Phālgunī",     lord: venus,   gana: manushya, yoni: rat,      yoni_sex: f, nadi: madhya, deity: "Bhaga",          syllables: ["मो", "टा", "टी", "टू"], syllables_iast: ["Mo", "Ta", "Ti", "Tu"]}
+  - {n: 12, deva: "उत्तरफाल्गुनी",   iast: "Uttara Phālgunī",    lord: sun,     gana: manushya, yoni: cow,      yoni_sex: m, nadi: adi,    deity: "Aryaman",        syllables: ["टे", "टो", "पा", "पी"], syllables_iast: ["Te", "To", "Pa", "Pi"]}
+  - {n: 13, deva: "हस्त",          iast: "Hasta",              lord: moon,    gana: deva,     yoni: buffalo,  yoni_sex: f, nadi: adi,    deity: "Savitṛ",         syllables: ["पू", "ष", "ण", "ठ"],   syllables_iast: ["Pu", "Sha", "Na", "Tha"]}
+  - {n: 14, deva: "चित्रा",         iast: "Citrā",              lord: mars,    gana: rakshasa, yoni: tiger,    yoni_sex: f, nadi: madhya, deity: "Tvaṣṭṛ",         syllables: ["पे", "पो", "रा", "री"], syllables_iast: ["Pe", "Po", "Ra", "Ri"]}
+  - {n: 15, deva: "स्वाति",         iast: "Svāti",              lord: rahu,    gana: deva,     yoni: buffalo,  yoni_sex: m, nadi: antya,  deity: "Vāyu",           syllables: ["रू", "रे", "रो", "ता"], syllables_iast: ["Ru", "Re", "Ro", "Ta"]}
+  - {n: 16, deva: "विशाखा",        iast: "Viśākhā",            lord: jupiter, gana: rakshasa, yoni: tiger,    yoni_sex: m, nadi: antya,  deity: "Indrāgni",       syllables: ["ती", "तू", "ते", "तो"], syllables_iast: ["Ti", "Tu", "Te", "To"]}
+  - {n: 17, deva: "अनुराधा",        iast: "Anurādhā",           lord: saturn,  gana: deva,     yoni: deer,     yoni_sex: f, nadi: madhya, deity: "Mitra",          syllables: ["ना", "नी", "नू", "ने"], syllables_iast: ["Na", "Ni", "Nu", "Ne"]}
+  - {n: 18, deva: "ज्येष्ठा",        iast: "Jyeṣṭhā",            lord: mercury, gana: rakshasa, yoni: deer,     yoni_sex: m, nadi: adi,    deity: "Indra",          syllables: ["नो", "या", "यी", "यू"], syllables_iast: ["No", "Ya", "Yi", "Yu"]}
+  - {n: 19, deva: "मूल",           iast: "Mūla",               lord: ketu,    gana: rakshasa, yoni: dog,      yoni_sex: m, nadi: adi,    deity: "Nirṛti",         syllables: ["ये", "यो", "भा", "भी"], syllables_iast: ["Ye", "Yo", "Bha", "Bhi"]}
+  - {n: 20, deva: "पूर्वाषाढा",      iast: "Pūrvāṣāḍhā",         lord: venus,   gana: manushya, yoni: monkey,   yoni_sex: m, nadi: madhya, deity: "Āpas",           syllables: ["भू", "धा", "फा", "ढा"], syllables_iast: ["Bhu", "Dha", "Pha", "Dha"]}
+  - {n: 21, deva: "उत्तराषाढा",     iast: "Uttarāṣāḍhā",        lord: sun,     gana: manushya, yoni: mongoose, yoni_sex: m, nadi: antya,  deity: "Viśvedevas",     syllables: ["भे", "भो", "जा", "जी"], syllables_iast: ["Be", "Bo", "Ja", "Ji"]}
+  - {n: 22, deva: "श्रवण",         iast: "Śravaṇa",            lord: moon,    gana: deva,     yoni: monkey,   yoni_sex: f, nadi: antya,  deity: "Viṣṇu",          syllables: ["खी", "खू", "खे", "खो"], syllables_iast: ["Khi", "Khu", "Khe", "Kho"]}
+  - {n: 23, deva: "धनिष्ठा",        iast: "Dhaniṣṭhā",          lord: mars,    gana: rakshasa, yoni: lion,     yoni_sex: f, nadi: madhya, deity: "Vasus",          syllables: ["गा", "गी", "गू", "गे"], syllables_iast: ["Ga", "Gi", "Gu", "Ge"]}
+  - {n: 24, deva: "शतभिषा",       iast: "Śatabhiṣā",          lord: rahu,    gana: rakshasa, yoni: horse,    yoni_sex: f, nadi: adi,    deity: "Varuṇa",         syllables: ["गो", "सा", "सी", "सू"], syllables_iast: ["Go", "Sa", "Si", "Su"]}
+  - {n: 25, deva: "पूर्वभाद्रपदा",   iast: "Pūrva Bhādrapadā",   lord: jupiter, gana: manushya, yoni: lion,     yoni_sex: m, nadi: adi,    deity: "Aja Ekapāda",    syllables: ["से", "सो", "दा", "दी"], syllables_iast: ["Se", "So", "Da", "Di"]}
+  - {n: 26, deva: "उत्तरभाद्रपदा",  iast: "Uttara Bhādrapadā",  lord: saturn,  gana: manushya, yoni: cow,      yoni_sex: f, nadi: madhya, deity: "Ahir Budhnya",   syllables: ["दू", "थ", "झ", "ञ"],   syllables_iast: ["Du", "Tha", "Jha", "Nya"]}
+  - {n: 27, deva: "रेवती",          iast: "Revatī",             lord: mercury, gana: deva,     yoni: elephant, yoni_sex: f, nadi: antya,  deity: "Pūṣan",          syllables: ["दे", "दो", "चा", "ची"], syllables_iast: ["De", "Do", "Cha", "Chi"]}

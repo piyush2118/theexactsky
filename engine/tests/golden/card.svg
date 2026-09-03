@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="114.3mm" viewBox="0 0 91.44 114.3" width="91.44mm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter color-interpolation-filters="sRGB" height="100%" id="grain" width="100%" x="0%" y="0%">
+      <feTurbulence baseFrequency="0.85" numOctaves="3" result="noise" seed="7" type="fractalNoise"/>
+      <feColorMatrix in="noise" type="saturate" values="0"/>
+    </filter>
+    <clipPath id="sky-clip">
+      <circle cx="45.72" cy="45.72" r="34.42"/>
+    </clipPath>
+    <path d="M 45.72 9.18 A 36.54 36.54 0 0 1 54.147 10.165" fill="none" id="print-nak-0"/>
+    <path d="M 45.72 8.26 A 37.46 37.46 0 0 1 54.359 9.27" fill="none" id="print-nak-iast-0"/>
+    <path d="M 54.147 10.165 A 36.54 36.54 0 0 1 62.119 13.067" fill="none" id="print-nak-1"/>
+    <path d="M 54.359 9.27 A 37.46 37.46 0 0 1 62.532 12.245" fill="none" id="print-nak-iast-1"/>
+    <path d="M 62.119 13.067 A 36.54 36.54 0 0 1 69.207 17.729" fill="none" id="print-nak-2"/>
+    <path d="M 62.532 12.245 A 37.46 37.46 0 0 1 69.799 17.024" fill="none" id="print-nak-iast-2"/>
+    <path d="M 69.207 17.729 A 36.54 36.54 0 0 1 75.03 23.9" fill="none" id="print-nak-3"/>
+    <path d="M 69.799 17.024 A 37.46 37.46 0 0 1 75.768 23.35" fill="none" id="print-nak-iast-3"/>
+    <path d="M 75.03 23.9 A 36.54 36.54 0 0 1 79.272 31.247" fill="none" id="print-nak-4"/>
+    <path d="M 75.768 23.35 A 37.46 37.46 0 0 1 80.116 30.883" fill="none" id="print-nak-iast-4"/>
+    <path d="M 79.272 31.247 A 36.54 36.54 0 0 1 81.705 39.375" fill="none" id="print-nak-5"/>
+    <path d="M 80.116 30.883 A 37.46 37.46 0 0 1 82.611 39.215" fill="none" id="print-nak-iast-5"/>
+    <path d="M 81.705 39.375 A 36.54 36.54 0 0 1 82.198 47.845" fill="none" id="print-nak-6"/>
+    <path d="M 82.611 39.215 A 37.46 37.46 0 0 1 83.117 47.898" fill="none" id="print-nak-iast-6"/>
+    <path d="M 80.955 56.269 A 36.78 36.78 0 0 0 82.438 47.859" fill="none" id="print-nak-7"/>
+    <path d="M 81.836 56.532 A 37.7 37.7 0 0 0 83.356 47.912" fill="none" id="print-nak-iast-7"/>
+    <path d="M 77.572 64.11 A 36.78 36.78 0 0 0 80.955 56.269" fill="none" id="print-nak-8"/>
+    <path d="M 78.369 64.57 A 37.7 37.7 0 0 0 81.836 56.532" fill="none" id="print-nak-iast-8"/>
+    <path d="M 72.473 70.96 A 36.78 36.78 0 0 0 77.572 64.11" fill="none" id="print-nak-9"/>
+    <path d="M 73.142 71.591 A 37.7 37.7 0 0 0 78.369 64.57" fill="none" id="print-nak-iast-9"/>
+    <path d="M 65.931 76.449 A 36.78 36.78 0 0 0 72.473 70.96" fill="none" id="print-nak-10"/>
+    <path d="M 66.436 77.218 A 37.7 37.7 0 0 0 73.142 71.591" fill="none" id="print-nak-iast-10"/>
+    <path d="M 58.3 80.282 A 36.78 36.78 0 0 0 65.931 76.449" fill="none" id="print-nak-11"/>
+    <path d="M 58.614 81.146 A 37.7 37.7 0 0 0 66.436 77.218" fill="none" id="print-nak-iast-11"/>
+    <path d="M 49.99 82.251 A 36.78 36.78 0 0 0 58.3 80.282" fill="none" id="print-nak-12"/>
+    <path d="M 50.097 83.165 A 37.7 37.7 0 0 0 58.614 81.146" fill="none" id="print-nak-iast-12"/>
+    <path d="M 41.45 82.251 A 36.78 36.78 0 0 0 49.99 82.251" fill="none" id="print-nak-13"/>
+    <path d="M 41.343 83.165 A 37.7 37.7 0 0 0 50.097 83.165" fill="none" id="print-nak-iast-13"/>
+    <path d="M 33.14 80.282 A 36.78 36.78 0 0 0 41.45 82.251" fill="none" id="print-nak-14"/>
+    <path d="M 32.826 81.146 A 37.7 37.7 0 0 0 41.343 83.165" fill="none" id="print-nak-iast-14"/>
+    <path d="M 25.509 76.449 A 36.78 36.78 0 0 0 33.14 80.282" fill="none" id="print-nak-15"/>
+    <path d="M 25.004 77.218 A 37.7 37.7 0 0 0 32.826 81.146" fill="none" id="print-nak-iast-15"/>
+    <path d="M 18.967 70.96 A 36.78 36.78 0 0 0 25.509 76.449" fill="none" id="print-nak-16"/>
+    <path d="M 18.298 71.591 A 37.7 37.7 0 0 0 25.004 77.218" fill="none" id="print-nak-iast-16"/>
+    <path d="M 13.868 64.11 A 36.78 36.78 0 0 0 18.967 70.96" fill="none" id="print-nak-17"/>
+    <path d="M 13.071 64.57 A 37.7 37.7 0 0 0 18.298 71.591" fill="none" id="print-nak-iast-17"/>
+    <path d="M 10.485 56.269 A 36.78 36.78 0 0 0 13.868 64.11" fill="none" id="print-nak-18"/>
+    <path d="M 9.604 56.532 A 37.7 37.7 0 0 0 13.071 64.57" fill="none" id="print-nak-iast-18"/>
+    <path d="M 9.002 47.859 A 36.78 36.78 0 0 0 10.485 56.269" fill="none" id="print-nak-19"/>
+    <path d="M 8.084 47.912 A 37.7 37.7 0 0 0 9.604 56.532" fill="none" id="print-nak-iast-19"/>
+    <path d="M 9.242 47.845 A 36.54 36.54 0 0 1 9.735 39.375" fill="none" id="print-nak-20"/>
+    <path d="M 8.323 47.898 A 37.46 37.46 0 0 1 8.829 39.215" fill="none" id="print-nak-iast-20"/>
+    <path d="M 9.735 39.375 A 36.54 36.54 0 0 1 12.168 31.247" fill="none" id="print-nak-21"/>
+    <path d="M 8.829 39.215 A 37.46 37.46 0 0 1 11.324 30.883" fill="none" id="print-nak-iast-21"/>
+    <path d="M 12.168 31.247 A 36.54 36.54 0 0 1 16.41 23.9" fill="none" id="print-nak-22"/>
+    <path d="M 11.324 30.883 A 37.46 37.46 0 0 1 15.672 23.35" fill="none" id="print-nak-iast-22"/>
+    <path d="M 16.41 23.9 A 36.54 36.54 0 0 1 22.233 17.729" fill="none" id="print-nak-23"/>
+    <path d="M 15.672 23.35 A 37.46 37.46 0 0 1 21.641 17.024" fill="none" id="print-nak-iast-23"/>
+    <path d="M 22.233 17.729 A 36.54 36.54 0 0 1 29.321 13.067" fill="none" id="print-nak-24"/>
+    <path d="M 21.641 17.024 A 37.46 37.46 0 0 1 28.908 12.245" fill="none" id="print-nak-iast-24"/>
+    <path d="M 29.321 13.067 A 36.54 36.54 0 0 1 37.293 10.165" fill="none" id="print-nak-25"/>
+    <path d="M 28.908 12.245 A 37.46 37.46 0 0 1 37.081 9.27" fill="none" id="print-nak-iast-25"/>
+    <path d="M 37.293 10.165 A 36.54 36.54 0 0 1 45.72 9.18" fill="none" id="print-nak-26"/>
+    <path d="M 37.081 9.27 A 37.46 37.46 0 0 1 45.72 8.26" fill="none" id="print-nak-iast-26"/>
+  </defs>
+  <g transform="translate(0,0)">
+    <rect fill="#0F1B3D" height="114.3" width="91.44" x="0" y="0"/>
+    <rect filter="url(#grain)" height="114.3" opacity="0.02" width="91.44" x="0" y="0"/>
+    <!-- sky disc: zenith-centred stereographic, north up, east left -->
+    <circle cx="45.72" cy="45.72" fill="#0F1B3D" opacity="0.55" r="34.42"/>
+    <g clip-path="url(#sky-clip)">
+      <g fill="#F3E9D2" opacity="0.95">
+        <circle cx="65.331" cy="40.415" r="0.081"/>
+        <circle cx="55.99" cy="33.903" r="0.077"/>
+        <circle cx="74.608" cy="55.084" r="0.047"/>
+        <circle cx="56.839" cy="36.071" r="0.043"/>
+        <circle cx="62.995" cy="41.8" r="0.056"/>
+        <circle cx="55.981" cy="35.659" r="0.078"/>
+        <circle cx="73.402" cy="60.864" r="0.082"/>
+        <circle cx="55.377" cy="35.717" r="0.051"/>
+        <circle cx="54.373" cy="35.361" r="0.074"/>
+        <circle cx="60.105" cy="40.64" r="0.034"/>
+        <circle cx="69.199" cy="58.022" r="0.051"/>
+        <circle cx="60.086" cy="42.025" r="0.081"/>
+        <circle cx="67.218" cy="57.719" r="0.046"/>
+        <circle cx="53.684" cy="36.39" r="0.07"/>
+        <circle cx="45.852" cy="30.056" r="0.082"/>
+        <circle cx="62.681" cy="49.159" r="0.045"/>
+        <circle cx="55.856" cy="39.69" r="0.047"/>
+        <circle cx="66.037" cy="61.781" r="0.049"/>
+        <circle cx="64.61" cy="59.521" r="0.041"/>
+        <circle cx="52.075" cy="36.312" r="0.053"/>
+        <circle cx="58.654" cy="45.562" r="0.052"/>
+        <circle cx="59.985" cy="48.31" r="0.07"/>
+        <circle cx="49.946" cy="34.274" r="0.025"/>
+        <circle cx="64.767" cy="64.544" r="0.02"/>
+        <circle cx="55.833" cy="42.267" r="0.078"/>
+        <circle cx="58.669" cy="47.924" r="0.082"/>
+        <circle cx="56.741" cy="44.544" r="0.063"/>
+        <circle cx="61.023" cy="57.344" r="0.062"/>
+        <circle cx="58.214" cy="55.671" r="0.05"/>
+        <circle cx="51.543" cy="39.675" r="0.039"/>
+        <circle cx="55.204" cy="48.014" r="0.045"/>
+        <circle cx="51.83" cy="40.641" r="0.028"/>
+        <circle cx="58.01" cy="60.421" r="0.033"/>
+        <circle cx="59.165" cy="74.977" r="0.057"/>
+        <circle cx="56.485" cy="55.788" r="0.073"/>
+        <circle cx="51.279" cy="40.633" r="0.064"/>
+        <circle cx="52.973" cy="44.907" r="0.052"/>
+        <circle cx="52.575" cy="44.348" r="0.08"/>
+        <circle cx="52.076" cy="43.233" r="0.038"/>
+        <circle cx="57.491" cy="69.188" r="0.034"/>
+        <circle cx="50.81" cy="42.037" r="0.086"/>
+        <circle cx="54.221" cy="54.536" r="0.046"/>
+        <circle cx="54.603" cy="61.173" r="0.041"/>
+        <circle cx="50.097" cy="42.928" r="0.062"/>
+        <circle cx="51.184" cy="47.563" r="0.036"/>
+        <circle cx="50.388" cy="44.504" r="0.039"/>
+        <circle cx="53.656" cy="61.404" r="0.048"/>
+        <circle cx="51.691" cy="50.057" r="0.042"/>
+        <circle cx="51.608" cy="49.992" r="0.034"/>
+        <circle cx="51.508" cy="50.097" r="0.065"/>
+        <circle cx="50.585" cy="47.82" r="0.066"/>
+        <circle cx="49.858" cy="45.432" r="0.065"/>
+        <circle cx="52.42" cy="62.97" r="0.064"/>
+        <circle cx="51.149" cy="53.913" r="0.05"/>
+        <circle cx="51.234" cy="56.065" r="0.031"/>
+        <circle cx="51.342" cy="76.065" r="0.034"/>
+        <circle cx="49.546" cy="53.099" r="0.044"/>
+        <circle cx="50.916" cy="71.744" r="0.047"/>
+        <circle cx="49.245" cy="52.522" r="0.039"/>
+        <circle cx="48.772" cy="52.052" r="0.048"/>
+        <circle cx="48.869" cy="53.06" r="0.036"/>
+        <circle cx="48.865" cy="53.089" r="0.052"/>
+        <circle cx="48.299" cy="52.934" r="0.1"/>
+        <circle cx="48.686" cy="59.494" r="0.03"/>
+        <circle cx="48.699" cy="63.505" r="0.034"/>
+        <circle cx="47.379" cy="56.057" r="0.058"/>
+        <circle cx="47.285" cy="56.508" r="0.042"/>
+        <circle cx="47.066" cy="57.571" r="0.041"/>
+        <circle cx="46.543" cy="47.909" r="0.069"/>
+        <circle cx="46.15" cy="44.714" r="0.063"/>
+        <circle cx="46.143" cy="45.54" r="0.04"/>
+        <circle cx="45.913" cy="45.497" r="0.058"/>
+        <circle cx="46.198" cy="66.758" r="0.058"/>
+        <circle cx="45.939" cy="60.183" r="0.067"/>
+        <circle cx="45.486" cy="64.295" r="0.055"/>
+        <circle cx="45.363" cy="44.064" r="0.11"/>
+        <circle cx="45.346" cy="61.298" r="0.11"/>
+        <circle cx="45.075" cy="60.807" r="0.046"/>
+        <circle cx="44.494" cy="59.231" r="0.053"/>
+        <circle cx="44.505" cy="56.278" r="0.088"/>
+        <circle cx="44.639" cy="49.285" r="0.088"/>
+        <circle cx="44.032" cy="66.091" r="0.066"/>
+        <circle cx="43.864" cy="58.491" r="0.078"/>
+        <circle cx="43.689" cy="72.598" r="0.034"/>
+        <circle cx="43.628" cy="64.907" r="0.072"/>
+        <circle cx="43.739" cy="55.081" r="0.048"/>
+        <circle cx="43.5" cy="60.441" r="0.068"/>
+        <circle cx="43.737" cy="51.532" r="0.063"/>
+        <circle cx="43.253" cy="59.264" r="0.037"/>
+        <circle cx="43.088" cy="59.028" r="0.081"/>
+        <circle cx="42.859" cy="71.923" r="0.07"/>
+        <circle cx="42.472" cy="66.754" r="0.046"/>
+        <circle cx="42.332" cy="63.7" r="0.047"/>
+        <circle cx="42.34" cy="61.757" r="0.081"/>
+        <circle cx="43.303" cy="45.99" r="0.026"/>
+        <circle cx="41.833" cy="66.089" r="0.037"/>
+        <circle cx="41.734" cy="72.732" r="0.06"/>
+        <circle cx="42.073" cy="55.8" r="0.105"/>
+        <circle cx="43.51" cy="41.386" r="0.041"/>
+        <circle cx="41.464" cy="63.409" r="0.042"/>
+        <circle cx="43.081" cy="44.194" r="0.084"/>
+        <circle cx="42.745" cy="46.51" r="0.071"/>
+        <circle cx="40.918" cy="76.368" r="0.027"/>
+        <circle cx="41.11" cy="50.831" r="0.055"/>
+        <circle cx="39.977" cy="60.355" r="0.025"/>
+        <circle cx="38.862" cy="69.972" r="0.062"/>
+        <circle cx="40.533" cy="50.737" r="0.065"/>
+        <circle cx="38.892" cy="64.749" r="0.083"/>
+        <circle cx="38.638" cy="71.557" r="0.035"/>
+        <circle cx="39.102" cy="52.457" r="0.083"/>
+        <circle cx="37.502" cy="65.178" r="0.028"/>
+        <circle cx="37.022" cy="76.622" r="0.058"/>
+        <circle cx="39.215" cy="49.638" r="0.063"/>
+        <circle cx="38.3" cy="53.467" r="0.053"/>
+        <circle cx="36.773" cy="64.072" r="0.128"/>
+        <circle cx="35.834" cy="71.026" r="0.027"/>
+        <circle cx="39.309" cy="46.813" r="0.046"/>
+        <circle cx="35.611" cy="67.144" r="0.034"/>
+        <circle cx="35.01" cy="69.293" r="0.09"/>
+        <circle cx="34.721" cy="68.789" r="0.05"/>
+        <circle cx="34.725" cy="66.918" r="0.062"/>
+        <circle cx="33.408" cy="68.154" r="0.035"/>
+        <circle cx="36.025" cy="51.685" r="0.046"/>
+        <circle cx="32.911" cy="73.284" r="0.069"/>
+        <circle cx="36.385" cy="49.919" r="0.048"/>
+        <circle cx="36.589" cy="47.997" r="0.038"/>
+        <circle cx="32.346" cy="69.284" r="0.074"/>
+        <circle cx="34.549" cy="54.2" r="0.065"/>
+        <circle cx="31.615" cy="76.783" r="0.056"/>
+        <circle cx="36.471" cy="46.544" r="0.065"/>
+        <circle cx="36.471" cy="46.544" r="0.083"/>
+        <circle cx="33.227" cy="54.971" r="0.106"/>
+        <circle cx="31.733" cy="60.408" r="0.03"/>
+        <circle cx="34.911" cy="48.56" r="0.047"/>
+        <circle cx="35.3" cy="47.424" r="0.096"/>
+        <circle cx="30.247" cy="68.952" r="0.027"/>
+        <circle cx="29.848" cy="73.704" r="0.045"/>
+        <circle cx="29.85" cy="66.905" r="0.054"/>
+        <circle cx="29.059" cy="75.202" r="0.041"/>
+        <circle cx="27.771" cy="74.862" r="0.078"/>
+        <circle cx="27.893" cy="66.391" r="0.067"/>
+        <circle cx="30.476" cy="52.533" r="0.048"/>
+        <circle cx="27.943" cy="57.064" r="0.032"/>
+        <circle cx="38.546" cy="36.976" r="0.053"/>
+        <circle cx="23.531" cy="71.942" r="0.026"/>
+        <circle cx="29.56" cy="48.472" r="0.029"/>
+        <circle cx="23.187" cy="70.658" r="0.043"/>
+        <circle cx="27.417" cy="52.409" r="0.053"/>
+        <circle cx="26.557" cy="52.228" r="0.06"/>
+        <circle cx="34.683" cy="39.264" r="0.059"/>
+        <circle cx="33.214" cy="40.838" r="0.026"/>
+        <circle cx="34.29" cy="39.318" r="0.046"/>
+        <circle cx="24.125" cy="52.759" r="0.033"/>
+        <circle cx="31.131" cy="41.367" r="0.037"/>
+        <circle cx="30.439" cy="41.918" r="0.059"/>
+        <circle cx="20.732" cy="56.77" r="0.083"/>
+        <circle cx="37.462" cy="34.639" r="0.043"/>
+        <circle cx="34.276" cy="37.038" r="0.058"/>
+        <circle cx="20.867" cy="52.884" r="0.031"/>
+        <circle cx="23.214" cy="48.515" r="0.048"/>
+        <circle cx="26.261" cy="43.64" r="0.063"/>
+        <circle cx="35.825" cy="34.754" r="0.038"/>
+        <circle cx="26.384" cy="42.563" r="0.033"/>
+        <circle cx="22.782" cy="44.492" r="0.048"/>
+        <circle cx="21.35" cy="46.061" r="0.093"/>
+        <circle cx="14.829" cy="56.44" r="0.045"/>
+        <circle cx="24.046" cy="41.769" r="0.051"/>
+        <circle cx="30.061" cy="36.785" r="0.051"/>
+        <circle cx="22.724" cy="42.621" r="0.071"/>
+        <circle cx="22.724" cy="42.621" r="0.038"/>
+        <circle cx="29.401" cy="36.784" r="0.061"/>
+        <circle cx="18.377" cy="45.235" r="0.035"/>
+        <circle cx="25.573" cy="36.285" r="0.036"/>
+        <circle cx="33.444" cy="32.018" r="0.076"/>
+        <circle cx="35.39" cy="31.349" r="0.086"/>
+        <circle cx="28.825" cy="33.172" r="0.062"/>
+        <circle cx="57.101" cy="31.215" r="0.031"/>
+        <circle cx="19.167" cy="37.915" r="0.072"/>
+        <circle cx="17.082" cy="39.432" r="0.054"/>
+        <circle cx="24.04" cy="34.509" r="0.05"/>
+        <circle cx="14.228" cy="40.089" r="0.029"/>
+        <circle cx="38.038" cy="29.796" r="0.036"/>
+        <circle cx="29.374" cy="30.238" r="0.042"/>
+        <circle cx="14.081" cy="35.916" r="0.08"/>
+        <circle cx="31.763" cy="29.328" r="0.074"/>
+        <circle cx="33.094" cy="27.973" r="0.055"/>
+        <circle cx="38.346" cy="27.715" r="0.034"/>
+        <circle cx="32.858" cy="25.638" r="0.086"/>
+        <circle cx="24.402" cy="24.596" r="0.065"/>
+        <circle cx="32.883" cy="23.654" r="0.077"/>
+        <circle cx="32.881" cy="23.653" r="0.028"/>
+        <circle cx="30.937" cy="21.05" r="0.085"/>
+        <circle cx="37.733" cy="23.461" r="0.044"/>
+        <circle cx="41.981" cy="24.967" r="0.081"/>
+        <circle cx="54.834" cy="54.28" r="0.071"/>
+        <circle cx="42.166" cy="23.64" r="0.061"/>
+        <circle cx="39.139" cy="18.541" r="0.055"/>
+        <circle cx="42.963" cy="18.2" r="0.068"/>
+        <circle cx="45.601" cy="19.88" r="0.058"/>
+        <circle cx="45.328" cy="63.596" r="0.05"/>
+        <circle cx="47.429" cy="13.044" r="0.067"/>
+        <circle cx="48.778" cy="15.849" r="0.04"/>
+        <circle cx="49.79" cy="13.046" r="0.078"/>
+        <circle cx="41.335" cy="59.269" r="0.026"/>
+        <circle cx="47.888" cy="23.429" r="0.047"/>
+        <circle cx="35.795" cy="71.444" r="0.051"/>
+        <circle cx="50.597" cy="22.394" r="0.061"/>
+        <circle cx="55.179" cy="17.212" r="0.039"/>
+        <circle cx="56.517" cy="17.305" r="0.038"/>
+        <circle cx="60.239" cy="16.074" r="0.065"/>
+        <circle cx="50.905" cy="24.156" r="0.036"/>
+        <circle cx="60.916" cy="18.917" r="0.038"/>
+        <circle cx="60.527" cy="19.304" r="0.025"/>
+        <circle cx="64.594" cy="18.232" r="0.079"/>
+        <circle cx="55.305" cy="24.162" r="0.051"/>
+        <circle cx="37.265" cy="36.834" r="0.044"/>
+        <circle cx="65.127" cy="21.936" r="0.029"/>
+        <circle cx="63.836" cy="22.944" r="0.041"/>
+        <circle cx="71.465" cy="23.171" r="0.058"/>
+        <circle cx="67.034" cy="23.532" r="0.041"/>
+        <circle cx="55.59" cy="25.848" r="0.074"/>
+        <circle cx="27.283" cy="45.134" r="0.04"/>
+        <circle cx="52.56" cy="27.177" r="0.057"/>
+        <circle cx="73.114" cy="30.37" r="0.039"/>
+        <circle cx="57.776" cy="28.273" r="0.054"/>
+        <circle cx="57.648" cy="29.254" r="0.04"/>
+        <circle cx="60.974" cy="29.791" r="0.039"/>
+        <circle cx="78.293" cy="38.218" r="0.052"/>
+        <circle cx="69.326" cy="33.307" r="0.064"/>
+        <circle cx="72.104" cy="35.092" r="0.028"/>
+        <circle cx="71.458" cy="35.193" r="0.05"/>
+        <circle cx="54.512" cy="29.906" r="0.048"/>
+        <circle cx="63.631" cy="32.834" r="0.045"/>
+        <circle cx="69.273" cy="35.68" r="0.075"/>
+        <circle cx="74.49" cy="39.276" r="0.073"/>
+        <circle cx="78.09" cy="44.893" r="0.042"/>
+        <circle cx="61.043" cy="34.518" r="0.037"/>
+        <circle cx="50.101" cy="30.631" r="0.057"/>
+      </g>
+      <polyline fill="none" opacity="0.55" points="74.714,49.786 74.208,49.872 73.707,49.955 73.214,50.034 72.726,50.11 72.245,50.183 71.769,50.253 71.299,50.32 70.835,50.384 70.376,50.446 69.923,50.505 69.474,50.562 69.031,50.616 68.592,50.668 68.158,50.718 67.729,50.766 67.304,50.811 66.883,50.854 66.467,50.896 66.055,50.935 65.646,50.973 65.242,51.009 64.841,51.043 64.444,51.075 64.05,51.106 63.66,51.135 63.274,51.163 62.89,51.189 62.51,51.213 62.133,51.236 61.758,51.258 61.387,51.278 61.019,51.297 60.653,51.315 60.29,51.331 59.929,51.346 59.571,51.36 59.215,51.373 58.862,51.384 58.511,51.394 58.162,51.404 57.816,51.412 57.471,51.419 57.129,51.425 56.788,51.429 56.449,51.433 56.112,51.436 55.777,51.438 55.444,51.439 55.112,51.438 54.782,51.437 54.453,51.435 54.126,51.432 53.8,51.428 53.475,51.424 53.152,51.418 52.83,51.411 52.509,51.404 52.19,51.396 51.871,51.386 51.554,51.376 51.238,51.366 50.922,51.354 50.607,51.341 50.294,51.328 49.981,51.314 49.669,51.299 49.357,51.283 49.046,51.266 48.736,51.249 48.426,51.23 48.117,51.211 47.809,51.191 47.5,51.171 47.193,51.149 46.885,51.127 46.578,51.104 46.271,51.08 45.964,51.055 45.658,51.03 45.352,51.003 45.045,50.976 44.739,50.948 44.433,50.919 44.127,50.889 43.82,50.859 43.514,50.827 43.207,50.795 42.9,50.762 42.593,50.728 42.286,50.693 41.978,50.658 41.67,50.621 41.361,50.584 41.052,50.545 40.742,50.506 40.432,50.465 40.121,50.424 39.81,50.382 39.498,50.339 39.185,50.295 38.871,50.25 38.556,50.204 38.241,50.156 37.924,50.108 37.607,50.059 37.288,50.009 36.969,49.957 36.648,49.905 36.326,49.851 36.003,49.796 35.678,49.74 35.353,49.683 35.025,49.624 34.697,49.565 34.367,49.504 34.035,49.441 33.701,49.378 33.366,49.313 33.029,49.246 32.691,49.179 32.35,49.109 32.008,49.039 31.663,48.966 31.317,48.893 30.968,48.817 30.617,48.74 30.264,48.662 29.908,48.581 29.55,48.499 29.19,48.415 28.827,48.33 28.461,48.242 28.093,48.153 27.722,48.061 27.348,47.967 26.971,47.872 26.591,47.774 26.208,47.674 25.821,47.572 25.431,47.467 25.038,47.36 24.642,47.25 24.241,47.138 23.837,47.023 23.429,46.906 23.018,46.786 22.602,46.662 22.182,46.536 21.757,46.407 21.329,46.275 20.896,46.139 20.458,46 20.015,45.857 19.567,45.711 19.115,45.562 18.657,45.408 18.194,45.25 17.725,45.088 17.251,44.922 16.771,44.752 16.284,44.577 15.792,44.397 15.293,44.212 14.788,44.022 14.276,43.827 13.758,43.626 13.232,43.42 12.699,43.208 12.158,42.989 11.61,42.765" stroke="#C9A227" stroke-dasharray="2.2 1.6" stroke-width="0.07"/>
+      <polyline fill="none" opacity="0.55" points="79.609,48.835 79.033,48.959 78.465,49.077 77.906,49.191 77.355,49.301 76.812,49.406 76.277,49.507 75.749,49.604 75.228,49.697 74.714,49.786" stroke="#C9A227" stroke-dasharray="2.2 1.6" stroke-width="0.07"/>
+      <circle cx="61.605" cy="51.084" fill="#C9A227" r="0.3"/>
+      <circle cx="61.605" cy="51.084" fill="none" opacity="0.45" r="0.78" stroke="#C9A227" stroke-width="0.036"/>
+      <g transform="translate(44.635,51.857) rotate(-9.165)">
+        <circle cx="0" cy="0" fill="none" opacity="0.7" r="0.64" stroke="#6B7A99" stroke-width="0.058"/>
+        <path d="M 0 -0.64 A 0.64 0.64 0 0 1 0 0.64 A 0.282 0.64 0 0 1 0 -0.64 Z" fill="#F3E9D2"/>
+      </g>
+    </g>
+    <circle cx="45.72" cy="45.72" fill="none" opacity="0.8" r="34.42" stroke="#F3E9D2" stroke-width="0.1"/>
+    <line opacity="0.7" stroke="#F3E9D2" stroke-width="0.08" x1="45.72" x2="45.72" y1="11.3" y2="11.78"/>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.88" letter-spacing="0.08" text-anchor="middle" x="45.72" y="13.08">N</text>
+    <line opacity="0.7" stroke="#F3E9D2" stroke-width="0.08" x1="11.3" x2="11.78" y1="45.72" y2="45.72"/>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.88" letter-spacing="0.08" text-anchor="middle" x="12.78" y="46.02">E</text>
+    <line opacity="0.7" stroke="#F3E9D2" stroke-width="0.08" x1="45.72" x2="45.72" y1="80.14" y2="79.66"/>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.88" letter-spacing="0.08" text-anchor="middle" x="45.72" y="78.96">S</text>
+    <line opacity="0.7" stroke="#F3E9D2" stroke-width="0.08" x1="80.14" x2="79.66" y1="45.72" y2="45.72"/>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.88" letter-spacing="0.08" text-anchor="middle" x="78.66" y="46.02">W</text>
+    <!-- nakshatra ring: sidereal longitude 0 at top, clockwise -->
+    <g>
+      <path d="M 45.72 7.2 A 38.52 38.52 0 0 1 54.603 8.238 L 53.911 11.157 A 35.52 35.52 0 0 0 45.72 10.2 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-0" startOffset="50%" text-anchor="middle">अश्विनी</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-0" startOffset="50%" text-anchor="middle">Aśvinī</textPath>
+      </text>
+      <path d="M 54.603 8.238 A 38.52 38.52 0 0 1 63.008 11.297 L 61.661 13.978 A 35.52 35.52 0 0 0 53.911 11.157 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-1" startOffset="50%" text-anchor="middle">भरणी</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-1" startOffset="50%" text-anchor="middle">Bharaṇī</textPath>
+      </text>
+      <path d="M 63.008 11.297 A 38.52 38.52 0 0 1 70.48 16.212 L 68.552 18.51 A 35.52 35.52 0 0 0 61.661 13.978 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-2" startOffset="50%" text-anchor="middle">कृत्तिका</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-2" startOffset="50%" text-anchor="middle">Kṛttikā</textPath>
+      </text>
+      <path d="M 70.48 16.212 A 38.52 38.52 0 0 1 76.618 22.717 L 74.211 24.509 A 35.52 35.52 0 0 0 68.552 18.51 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-3" startOffset="50%" text-anchor="middle">रोहिणी</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-3" startOffset="50%" text-anchor="middle">Rohiṇī</textPath>
+      </text>
+      <path d="M 76.618 22.717 A 38.52 38.52 0 0 1 81.09 30.463 L 78.335 31.651 A 35.52 35.52 0 0 0 74.211 24.509 Z" fill="#C9A227" fill-opacity="0.11" stroke="#C9A227" stroke-opacity="1" stroke-width="0.08"/>
+      <text fill="#F3E9D2" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="1">
+        <textPath href="#print-nak-4" startOffset="50%" text-anchor="middle">मृगशीर्ष</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-4" startOffset="50%" text-anchor="middle">Mṛgaśīrṣa</textPath>
+      </text>
+      <path d="M 81.09 30.463 A 38.52 38.52 0 0 1 83.655 39.031 L 80.7 39.552 A 35.52 35.52 0 0 0 78.335 31.651 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-5" startOffset="50%" text-anchor="middle">आर्द्रा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-5" startOffset="50%" text-anchor="middle">Ārdrā</textPath>
+      </text>
+      <path d="M 83.655 39.031 A 38.52 38.52 0 0 1 84.175 47.96 L 81.18 47.785 A 35.52 35.52 0 0 0 80.7 39.552 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-6" startOffset="50%" text-anchor="middle">पुनर्वसु</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-6" startOffset="50%" text-anchor="middle">Punarvasu</textPath>
+      </text>
+      <path d="M 84.175 47.96 A 38.52 38.52 0 0 1 82.622 56.768 L 79.748 55.907 A 35.52 35.52 0 0 0 81.18 47.785 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-7" startOffset="50%" text-anchor="middle">पुष्य</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-7" startOffset="50%" text-anchor="middle">Puṣya</textPath>
+      </text>
+      <path d="M 82.622 56.768 A 38.52 38.52 0 0 1 79.079 64.98 L 76.481 63.48 A 35.52 35.52 0 0 0 79.748 55.907 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-8" startOffset="50%" text-anchor="middle">आश्लेषा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-8" startOffset="50%" text-anchor="middle">Āśleṣā</textPath>
+      </text>
+      <path d="M 79.079 64.98 A 38.52 38.52 0 0 1 73.738 72.154 L 71.556 70.095 A 35.52 35.52 0 0 0 76.481 63.48 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-9" startOffset="50%" text-anchor="middle">मघा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-9" startOffset="50%" text-anchor="middle">Maghā</textPath>
+      </text>
+      <path d="M 73.738 72.154 A 38.52 38.52 0 0 1 66.887 77.903 L 65.239 75.397 A 35.52 35.52 0 0 0 71.556 70.095 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-10" startOffset="50%" text-anchor="middle">पूर्वफाल्गुनी</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-10" startOffset="50%" text-anchor="middle">Pūrva Phālgunī</textPath>
+      </text>
+      <path d="M 66.887 77.903 A 38.52 38.52 0 0 1 58.895 81.917 L 57.869 79.098 A 35.52 35.52 0 0 0 65.239 75.397 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-11" startOffset="50%" text-anchor="middle">उत्तरफाल्गुनी</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-11" startOffset="50%" text-anchor="middle">Uttara Phālgunī</textPath>
+      </text>
+      <path d="M 58.895 81.917 A 38.52 38.52 0 0 1 50.192 83.98 L 49.844 81 A 35.52 35.52 0 0 0 57.869 79.098 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-12" startOffset="50%" text-anchor="middle">हस्त</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-12" startOffset="50%" text-anchor="middle">Hasta</textPath>
+      </text>
+      <path d="M 50.192 83.98 A 38.52 38.52 0 0 1 41.248 83.98 L 41.596 81 A 35.52 35.52 0 0 0 49.844 81 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-13" startOffset="50%" text-anchor="middle">चित्रा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-13" startOffset="50%" text-anchor="middle">Citrā</textPath>
+      </text>
+      <path d="M 41.248 83.98 A 38.52 38.52 0 0 1 32.545 81.917 L 33.571 79.098 A 35.52 35.52 0 0 0 41.596 81 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-14" startOffset="50%" text-anchor="middle">स्वाति</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-14" startOffset="50%" text-anchor="middle">Svāti</textPath>
+      </text>
+      <path d="M 32.545 81.917 A 38.52 38.52 0 0 1 24.553 77.903 L 26.201 75.397 A 35.52 35.52 0 0 0 33.571 79.098 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-15" startOffset="50%" text-anchor="middle">विशाखा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-15" startOffset="50%" text-anchor="middle">Viśākhā</textPath>
+      </text>
+      <path d="M 24.553 77.903 A 38.52 38.52 0 0 1 17.702 72.154 L 19.884 70.095 A 35.52 35.52 0 0 0 26.201 75.397 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-16" startOffset="50%" text-anchor="middle">अनुराधा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-16" startOffset="50%" text-anchor="middle">Anurādhā</textPath>
+      </text>
+      <path d="M 17.702 72.154 A 38.52 38.52 0 0 1 12.361 64.98 L 14.959 63.48 A 35.52 35.52 0 0 0 19.884 70.095 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-17" startOffset="50%" text-anchor="middle">ज्येष्ठा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-17" startOffset="50%" text-anchor="middle">Jyeṣṭhā</textPath>
+      </text>
+      <path d="M 12.361 64.98 A 38.52 38.52 0 0 1 8.818 56.768 L 11.692 55.907 A 35.52 35.52 0 0 0 14.959 63.48 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-18" startOffset="50%" text-anchor="middle">मूल</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-18" startOffset="50%" text-anchor="middle">Mūla</textPath>
+      </text>
+      <path d="M 8.818 56.768 A 38.52 38.52 0 0 1 7.265 47.96 L 10.26 47.785 A 35.52 35.52 0 0 0 11.692 55.907 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-19" startOffset="50%" text-anchor="middle">पूर्वाषाढा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-19" startOffset="50%" text-anchor="middle">Pūrvāṣāḍhā</textPath>
+      </text>
+      <path d="M 7.265 47.96 A 38.52 38.52 0 0 1 7.785 39.031 L 10.74 39.552 A 35.52 35.52 0 0 0 10.26 47.785 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-20" startOffset="50%" text-anchor="middle">उत्तराषाढा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-20" startOffset="50%" text-anchor="middle">Uttarāṣāḍhā</textPath>
+      </text>
+      <path d="M 7.785 39.031 A 38.52 38.52 0 0 1 10.35 30.463 L 13.105 31.651 A 35.52 35.52 0 0 0 10.74 39.552 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-21" startOffset="50%" text-anchor="middle">श्रवण</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-21" startOffset="50%" text-anchor="middle">Śravaṇa</textPath>
+      </text>
+      <path d="M 10.35 30.463 A 38.52 38.52 0 0 1 14.822 22.717 L 17.229 24.509 A 35.52 35.52 0 0 0 13.105 31.651 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-22" startOffset="50%" text-anchor="middle">धनिष्ठा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-22" startOffset="50%" text-anchor="middle">Dhaniṣṭhā</textPath>
+      </text>
+      <path d="M 14.822 22.717 A 38.52 38.52 0 0 1 20.96 16.212 L 22.888 18.51 A 35.52 35.52 0 0 0 17.229 24.509 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-23" startOffset="50%" text-anchor="middle">शतभिषा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-23" startOffset="50%" text-anchor="middle">Śatabhiṣā</textPath>
+      </text>
+      <path d="M 20.96 16.212 A 38.52 38.52 0 0 1 28.432 11.297 L 29.779 13.978 A 35.52 35.52 0 0 0 22.888 18.51 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-24" startOffset="50%" text-anchor="middle">पूर्वभाद्रपदा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-24" startOffset="50%" text-anchor="middle">Pūrva Bhādrapadā</textPath>
+      </text>
+      <path d="M 28.432 11.297 A 38.52 38.52 0 0 1 36.837 8.238 L 37.529 11.157 A 35.52 35.52 0 0 0 29.779 13.978 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-25" startOffset="50%" text-anchor="middle">उत्तरभाद्रपदा</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-25" startOffset="50%" text-anchor="middle">Uttara Bhādrapadā</textPath>
+      </text>
+      <path d="M 36.837 8.238 A 38.52 38.52 0 0 1 45.72 7.2 L 45.72 10.2 A 35.52 35.52 0 0 0 37.529 11.157 Z" fill="none" fill-opacity="0" stroke="#6B7A99" stroke-opacity="0.55" stroke-width="0.036"/>
+      <text fill="#6B7A99" font-family="Tiro Devanagari Sanskrit" font-size="0.7" opacity="0.8">
+        <textPath href="#print-nak-26" startOffset="50%" text-anchor="middle">रेवती</textPath>
+      </text>
+      <text fill="#6B7A99" font-family="EB Garamond" font-size="0.42" letter-spacing="0.05" opacity="0.85">
+        <textPath href="#print-nak-iast-26" startOffset="50%" text-anchor="middle">Revatī</textPath>
+      </text>
+      <circle cx="16.007" cy="27.223" fill="#C9A227" r="0.21"/>
+      <circle cx="75.384" cy="27.144" fill="#B23A48" r="0.21"/>
+      <circle cx="20.59" cy="21.359" fill="#C9A227" r="0.21"/>
+      <circle cx="11.405" cy="52.608" fill="#C9A227" r="0.21"/>
+      <circle cx="49.539" cy="10.929" fill="#C9A227" r="0.21"/>
+      <circle cx="16.738" cy="65.342" fill="#C9A227" r="0.21"/>
+      <circle cx="11.035" cy="50.403" fill="#C9A227" r="0.21"/>
+      <circle cx="80.714" cy="46.37" fill="#C9A227" r="0.21"/>
+      <circle cx="10.726" cy="45.07" fill="#C9A227" r="0.21"/>
+      <circle cx="45.72" cy="45.72" fill="none" opacity="0.5" r="35.52" stroke="#6B7A99" stroke-width="0.05"/>
+      <circle cx="45.72" cy="45.72" fill="none" opacity="0.7" r="38.52" stroke="#C9A227" stroke-width="0.07"/>
+    </g>
+    <text fill="#F3E9D2" font-family="EB Garamond" font-size="2.6" letter-spacing="0.32" text-anchor="middle" x="45.72" y="91.92">P  ·  A</text>
+    <text fill="#C9A227" font-family="EB Garamond" font-size="1" letter-spacing="0.6" text-anchor="middle" x="45.72" y="94.22">WEDDING NIGHT</text>
+    <line opacity="0.6" stroke="#C9A227" stroke-width="0.06" x1="36.52" x2="54.92" y1="95.42" y2="95.42"/>
+    <text fill="#F3E9D2" font-family="EB Garamond" font-size="1.24" letter-spacing="0.1" text-anchor="middle" x="45.72" y="96.82">14 February 2019 CE, 19:30</text>
+    <text fill="#F3E9D2" font-family="EB Garamond" font-size="1.24" letter-spacing="0.1" text-anchor="middle" x="45.72" y="98.54">Edison, New Jersey, United States</text>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.88" letter-spacing="0.16" text-anchor="middle" x="45.72" y="99.98">40°31′N  74°24′W</text>
+    <text fill="#C9A227" font-family="Tiro Devanagari Sanskrit" font-size="1.36" letter-spacing="0" text-anchor="middle" x="45.72" y="102.58">मृगशीर्ष</text>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.88" letter-spacing="0.14" text-anchor="middle" x="45.72" y="104.02">Moon in Mṛgaśīrṣa · pada 2 · waxing gibbous</text>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="1" font-style="italic" letter-spacing="0" text-anchor="middle" x="45.72" y="106.02">Under this sky</text>
+    <text fill="#6B7A99" font-family="EB Garamond" font-size="0.62" letter-spacing="0.1" opacity="0.85" text-anchor="middle" x="45.72" y="111.1">Lahiri · equal nakshatras · Gregorian · America/New_York EST</text>
+  </g>
+</svg>

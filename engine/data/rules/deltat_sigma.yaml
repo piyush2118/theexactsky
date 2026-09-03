@@ -1,0 +1,50 @@
+id: deltat-sigma-v1
+title: Standard error of ΔT
+source: >-
+  Stephenson, F. R., Morrison, L. V. & Hohenkerk, C. Y. (2016). "Measurement of
+  the Earth's rotation: 720 BC to AD 2015." Proc. R. Soc. A 472: 20160404.
+note: >-
+  Swiss Ephemeris returns ΔT with no uncertainty attached, so we carry our own
+  curve. Inside the observed range the values are the approximate 1σ spread of
+  the SMH2016 spline, which is constrained by timed eclipse records back to
+  720 BC. Before that there are no records: the values are extrapolated from the
+  long-term parabola ΔT = -320 + 32.5·u² seconds, u = (year - 1825)/100, taking
+  ±0.6 s/century² on the quadratic coefficient and adding the 720 BC anchor
+  error in quadrature. They are order-of-magnitude, and every render that uses
+  one says so in its footer.
+  These numbers move what is *rising* at an ancient instant, not where the
+  planets are: an hour of ΔT is 15° of sky rotation but under 0.03° of lunar
+  motion, well inside one nakshatra.
+
+# Below this astronomical year there is no observational constraint and the
+# values are extrapolated. Renders flag it.
+extrapolated_before: -720
+
+# Renders at or before this year print σ(ΔT) in the footer.
+print_sigma_before: 500
+
+# year (astronomical numbering) -> 1σ in seconds. Linearly interpolated;
+# clamped at the ends.
+sigma_seconds:
+  -6000: 3696
+  -5000: 2823
+  -4000: 2075
+  -3000: 1453
+  -2000: 965
+  -1500: 750
+  -1000: 624
+  -720: 400
+  -500: 340
+  -300: 280
+  0: 200
+  300: 160
+  600: 120
+  1000: 70
+  1300: 40
+  1500: 20
+  1600: 10
+  1700: 2
+  1800: 1
+  1900: 0.1
+  1955: 0.0
+  2100: 0.0

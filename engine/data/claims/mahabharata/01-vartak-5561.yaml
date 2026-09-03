@@ -1,0 +1,35 @@
+# One proposed date for the Mahabharata war, written so it can be checked.
+#
+# Loading this file is not endorsing it. Every panel of the six-panel plate runs
+# the SAME constraint list -- Achar's three verse-derived constraints -- against
+# a different proposed date, and prints what the sky actually did. The engine
+# reaches no verdict; the renders are the argument.
+
+id: vartak-5561
+title: "5561 BCE — P. V. Vartak"
+source: >-
+  P. V. Vartak, 'Scientific Dating of the Mahabharata War' (Ved Vidnyana Mandal, Pune, 1984). War begins 16 October 5561 BCE.
+citation_status: verified
+date_status: stated
+
+calendar: julian          # proleptic Julian, astronomical year numbering
+scheme: {ayanamsa: lahiri, nakshatra_boundaries: equal}
+observer: kurukshetra
+
+events:
+  war_day1: {date: -5560-10-16, time: sunrise}
+
+constraints:
+  - {id: c1, type: planet_in_nakshatra, body: saturn, nakshatra: rohini,
+     at: war_day1, tol_deg: 6.67}
+  - {id: c2, type: retrograde, body: mars, near_nakshatra: jyeshtha,
+     at: war_day1, tol_deg: 13.33}
+  - {id: c3, type: eclipse_pair, first: lunar, second: solar, max_gap_days: 14,
+     at: war_day1, window_days: 45}
+
+note: >-
+  The constraints are Achar's reading of the Udyoga and Bhishma parvas: Saturn
+  near Rohini, Mars retrograde near Jyeshtha, and a lunar eclipse followed by a
+  solar eclipse within a fortnight. Applying one reader's constraint list to
+  another reader's date is deliberate, and it is the only way the six dates are
+  comparable at all.

@@ -1,0 +1,22 @@
+id: rasi-v1
+title: The 12 rasis
+source: >-
+  Names, lords and elements are standard. Varna follows the element (water =
+  Brāhmaṇa, fire = Kṣatriya, earth = Vaiśya, air = Śūdra) and vashya groups
+  follow B. V. Raman, "Hindu Predictive Astrology". Sagittarius and Capricorn
+  belong to two vashya groups by half-sign; the half is recorded so the Vashya
+  koota can be computed without re-deriving it.
+
+rasis:
+  - {n: 1,  deva: "मेष",     iast: "Meṣa",      latin: Aries,       lord: mars,    element: fire,  varna: kshatriya, vashya: chatushpada}
+  - {n: 2,  deva: "वृषभ",    iast: "Vṛṣabha",   latin: Taurus,      lord: venus,   element: earth, varna: vaishya,   vashya: chatushpada}
+  - {n: 3,  deva: "मिथुन",   iast: "Mithuna",   latin: Gemini,      lord: mercury, element: air,   varna: shudra,    vashya: manava}
+  - {n: 4,  deva: "कर्क",    iast: "Karka",     latin: Cancer,      lord: moon,    element: water, varna: brahmana,  vashya: jalachara}
+  - {n: 5,  deva: "सिंह",    iast: "Siṃha",     latin: Leo,         lord: sun,     element: fire,  varna: kshatriya, vashya: vanachara}
+  - {n: 6,  deva: "कन्या",   iast: "Kanyā",     latin: Virgo,       lord: mercury, element: earth, varna: vaishya,   vashya: manava}
+  - {n: 7,  deva: "तुला",    iast: "Tulā",      latin: Libra,       lord: venus,   element: air,   varna: shudra,    vashya: manava}
+  - {n: 8,  deva: "वृश्चिक",  iast: "Vṛścika",   latin: Scorpio,     lord: mars,    element: water, varna: brahmana,  vashya: keeta}
+  - {n: 9,  deva: "धनु",     iast: "Dhanu",     latin: Sagittarius, lord: jupiter, element: fire,  varna: kshatriya, vashya: manava,      vashya_second_half: chatushpada}
+  - {n: 10, deva: "मकर",    iast: "Makara",    latin: Capricorn,   lord: saturn,  element: earth, varna: vaishya,   vashya: chatushpada, vashya_second_half: jalachara}
+  - {n: 11, deva: "कुम्भ",   iast: "Kumbha",    latin: Aquarius,    lord: saturn,  element: air,   varna: shudra,    vashya: manava}
+  - {n: 12, deva: "मीन",    iast: "Mīna",      latin: Pisces,      lord: jupiter, element: water, varna: brahmana,  vashya: jalachara}

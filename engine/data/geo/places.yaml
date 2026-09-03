@@ -1,0 +1,53 @@
+# Named observers for dating claims.
+#
+# A claim says "the sky over Kurukshetra". Which coordinates that means is part
+# of the claim's citation, not a database lookup, so the observers a claim may
+# name are written down here with their source. Timezone is LMT throughout:
+# these are all pre-zone dates, and the only defensible clock is the Sun.
+
+observers:
+  kurukshetra:
+    name: Kurukshetra
+    admin: Haryana
+    country: India
+    lat: 29.9695
+    lon: 76.8783
+    tz: LMT
+    source: "Traditional site of the battlefield; GeoNames 1265953."
+
+  jerusalem:
+    name: Jerusalem
+    admin: ""
+    country: Israel
+    lat: 31.7683
+    lon: 35.2137
+    tz: LMT
+    source: "GeoNames 281184."
+
+  babylon:
+    name: Babylon
+    admin: Babil
+    country: Iraq
+    lat: 32.5355
+    lon: 44.4275
+    tz: LMT
+    source: "Ruins at Hillah; the source of the timed eclipse records that
+      constrain ΔT before 720 BC."
+
+  ujjain:
+    name: Ujjain
+    admin: Madhya Pradesh
+    country: India
+    lat: 23.1793
+    lon: 75.7849
+    tz: LMT
+    source: "Prime meridian of classical Indian astronomy; GeoNames 1253986."
+
+  dwarka:
+    name: Dwarka
+    admin: Gujarat
+    country: India
+    lat: 22.2394
+    lon: 68.9678
+    tz: LMT
+    source: "GeoNames 1273294."

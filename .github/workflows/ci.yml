@@ -1,0 +1,84 @@
+name: CI
+
+# Pinning is the whole point. resvg and the fonts are pinned so that golden-image
+# diffs mean "the layout changed" rather than "the runner changed"; the ephemeris
+# and star catalogue are checksummed for the same reason.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  RESVG_VERSION: "0.48.1"
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install resvg (pinned)
+        run: |
+          curl -fsSL -o resvg.tar.gz \
+            "https://github.com/linebender/resvg/releases/download/v${RESVG_VERSION}/resvg-linux-x86_64.tar.gz"
+          tar xzf resvg.tar.gz
+          sudo install -m755 resvg /usr/local/bin/resvg
+          resvg --version
+
+      - name: Cache the vendored data
+        id: data
+        uses: actions/cache@v4
+        with:
+          path: |
+            engine/data/ephe
+            engine/data/fonts
+            engine/data/geo
+          key: skurious-data-${{ hashFiles('scripts/*.py') }}
+
+      - name: Fetch and build the data
+        if: steps.data.outputs.cache-hit != 'true'
+        run: |
+          uv run --project engine scripts/fetch_ephe.py
+          uv run --project engine scripts/build_stars.py --check
+          uv run --project engine scripts/fetch_fonts.py
+          uv run --project engine scripts/build_geo.py
+
+      - name: Verify checksums even on a cache hit
+        run: uv run --project engine scripts/fetch_ephe.py
+
+      - name: Tests
+        working-directory: engine
+        run: uv run pytest -q
+
+      - name: Reproduce all three renders
+        working-directory: engine
+        run: |
+          uv run sk render sky --date 2019-02-14 --time 19:30 --place 5097529 \
+            --size 8x10 --names "Priya,Arjun" --occasion "Wedding night" --out render1
+          uv run sk claims plate data/claims/mahabharata --out render2
+          uv run sk conj find --bodies jupiter,saturn --from "-0007-01-01" \
+            --to "-0005-12-31" --place jerusalem --calendar julian --render \
+            --size 8x10 --out render3
+
+      - name: Renders are byte-identical on a second run
+        working-directory: engine
+        run: |
+          sha256sum out/*.svg out/*.png > first.sha
+          uv run sk render sky --date 2019-02-14 --time 19:30 --place 5097529 \
+            --size 8x10 --names "Priya,Arjun" --occasion "Wedding night" --out render1
+          uv run sk claims plate data/claims/mahabharata --out render2
+          uv run sk conj find --bodies jupiter,saturn --from "-0007-01-01" \
+            --to "-0005-12-31" --place jerusalem --calendar julian --render \
+            --size 8x10 --out render3
+          sha256sum -c first.sha
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: renders
+          path: engine/out/*.png
