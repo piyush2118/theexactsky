@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Skurious — the sky over any place, on any night{% endblock %}
+
+{% block main %}
+<section class="hero">
+  <h1>The sky, exactly as it stood.</h1>
+  <p class="lede">Give a date, a time and a town. You get the sky that was
+     actually overhead — the real stars in their real places, the planets, the
+     Moon at its true phase — inside a ring of the twenty-seven nakshatras.</p>
+</section>
+
+{% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+
+<form class="card-form" method="post" action="/sky" autocomplete="off">
+  <div class="row">
+    <label>
+      <span>Date</span>
+      <input type="date" name="date" required value="2019-02-14">
+    </label>
+    <label>
+      <span>Time</span>
+      <input type="time" name="time" required value="19:30">
+    </label>
+  </div>
+
+  <label class="place-field">
+    <span>Place</span>
+    <input type="text" id="place" placeholder="Start typing a town — Bombay, Edison, बंगलौर"
+           required autocomplete="off" role="combobox" aria-expanded="false"
+           aria-controls="place-list">
+    <input type="hidden" name="place_id" id="place_id">
+    <ul id="place-list" class="suggestions" role="listbox" hidden></ul>
+    <small id="place-note">Two hundred thousand towns, not just the big ones.</small>
+  </label>
+
+  <div class="row">
+    <label>
+      <span>Names <em>(optional)</em></span>
+      <input type="text" name="names" placeholder="Priya, Arjun" maxlength="60">
+    </label>
+    <label>
+      <span>Occasion <em>(optional)</em></span>
+      <input type="text" name="occasion" placeholder="Wedding night" maxlength="40">
+    </label>
+  </div>
+
+  <label class="check">
+    <input type="checkbox" name="approximate" value="1">
+    <span>The time is approximate</span>
+  </label>
+
+  <button type="submit">Draw this sky</button>
+  <p class="fine">Nothing is stored. The link you get back <em>is</em> the
+     birth details, and it carries no names.</p>
+</form>
+
+<section class="notes">
+  <h2>What makes this different</h2>
+  <dl>
+    <dt>Real stars, not decoration</dt>
+    <dd>9,096 stars from the Yale Bright Star Catalogue, precessed to your
+        instant through the same path the planets take. Not a stock star field
+        rotated to look plausible.</dd>
+
+    <dt>The nakshatra ring</dt>
+    <dd>Twenty-seven sidereal sectors in Devanagari and IAST, with each planet
+        marked at its own longitude and the Moon's nakshatra filled.</dd>
+
+    <dt>It says how it was computed</dt>
+    <dd>Ayanamsa, boundary scheme, calendar and timezone are printed on every
+        render. A picture that will not say how it was made cannot be checked.</dd>
+
+    <dt>Your town is in here</dt>
+    <dd>Every settlement above five hundred people, under the name your family
+        uses — Bombay finds Mumbai, and Devanagari works.</dd>
+  </dl>
+</section>
+{% endblock %}
+
+{% block scripts %}<script src="/static/app.js"></script>{% endblock %}

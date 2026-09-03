@@ -38,6 +38,7 @@ jobs:
             engine/data/ephe
             engine/data/fonts
             engine/data/geo
+            engine/data/_reference
           key: skurious-data-${{ hashFiles('scripts/*.py') }}
 
       - name: Fetch and build the data
@@ -47,12 +48,19 @@ jobs:
           uv run --project engine scripts/build_stars.py --check
           uv run --project engine scripts/fetch_fonts.py
           uv run --project engine scripts/build_geo.py
+          uv run --project engine scripts/fetch_reference.py
 
       - name: Verify checksums even on a cache hit
-        run: uv run --project engine scripts/fetch_ephe.py
+        run: |
+          uv run --project engine scripts/fetch_ephe.py
+          uv run --project engine scripts/fetch_reference.py
 
-      - name: Tests
+      - name: Engine tests, including reconciliation against JPL and Hipparcos
         working-directory: engine
+        run: uv run pytest -q
+
+      - name: Web tests
+        working-directory: web
         run: uv run pytest -q
 
       - name: Reproduce all three renders

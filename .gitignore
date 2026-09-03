@@ -17,3 +17,11 @@ __pycache__/
 .pytest_cache/
 .venv/
 .DS_Store
+
+# Reference ephemerides and catalogues for the reconciliation tests.
+# 17 MB, refetched by scripts/fetch_reference.py and checksummed.
+engine/data/_reference/
+engine/tests/fixtures/
+
+# Rendered card cache and the events database.
+web/var/

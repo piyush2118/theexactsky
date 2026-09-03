@@ -51,3 +51,12 @@ observers:
     lon: 68.9678
     tz: LMT
     source: "GeoNames 1273294."
+
+  bethlehem:
+    name: Bethlehem
+    admin: ""
+    country: Palestine
+    lat: 31.7054
+    lon: 35.2024
+    tz: LMT
+    source: "GeoNames 285054 (Bayt Lahm)."

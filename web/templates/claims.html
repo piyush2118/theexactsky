@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Six proposed dates for the Mahābhārata war{% endblock %}
+{% block description %}One constraint list, six proposed dates, evaluated against the sky. No verdict.{% endblock %}
+
+{% block main %}
+<section class="hero">
+  <h1>Six proposed dates, one constraint list.</h1>
+  <p class="lede">Scholars have put the Mahābhārata war anywhere from 5561 to
+     1198 BCE. Each proposal points at the sky. So: take one reader's
+     verse-derived constraints — Saturn near Rohiṇī, Mars retrograde near
+     Jyeṣṭhā, a lunar eclipse followed by a solar one within a fortnight — and
+     run them, unchanged, against every proposed date.</p>
+  <p class="lede">These are computed when you load this page, not stored.
+     <strong>The engine reaches no verdict.</strong> It prints what each
+     proposal asked for and what the sky actually did.</p>
+</section>
+
+{% for row in rows %}
+<article class="claim {% if row.result.passed %}has-pass{% endif %}">
+  <header>
+    <h2>{{ row.claim.title }}</h2>
+    <p class="stamp">{{ row.instant.source_local_iso }} LMT at Kurukṣetra
+       · ΔT {{ "%.1f"|format(row.instant.delta_t / 3600) }} h
+       {% if row.instant.delta_t_extrapolated %}~{% else %}±{% endif %}{{ "%.0f"|format(row.instant.delta_t_sigma / 60) }} min</p>
+    {% if row.claim.citation_status != 'verified' or row.claim.date_status != 'stated' %}
+    <p class="warn">
+      {% if row.claim.citation_status != 'verified' %}Citation unverified.{% endif %}
+      {% if row.claim.date_status != 'stated' %} Day-of-year is a placeholder.{% endif %}
+    </p>
+    {% endif %}
+  </header>
+
+  <ol class="constraints">
+    {% for c in row.result.results %}
+    <li class="{{ 'pass' if c.passes else 'fail' }}">
+      <span class="mark" aria-hidden="true"></span>
+      <div>
+        <p class="stated">{{ c.stated }}</p>
+        <p class="computed">{{ c.computed }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+  <p class="summary">{{ row.result.summary }}</p>
+</article>
+{% endfor %}
+
+<section class="notes">
+  <h2>What this does and does not show</h2>
+  <p>Meeting a constraint is not proof, and failing one is not refutation — a
+     proposal chooses the constraints it is judged by, and the constraint list
+     used here belongs to one of the six. The sources are recorded in the
+     repository beside each date, and where nobody has yet checked a citation
+     against the original publication, it says so above rather than quietly
+     implying it has been.</p>
+  <p>ΔT — the drift between Earth's rotation and uniform time — is about
+     twenty-one hours at 3067 BCE and is known only to within tens of minutes
+     before 720 BCE. That is enough to move what was <em>rising</em>, and far
+     too little to move a planet out of its nakshatra, which is why longitude
+     constraints carry no tolerance for it and rising ones would.</p>
+</section>
+{% endblock %}

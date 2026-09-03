@@ -1,0 +1,42 @@
+# One small VPS, two containers, no orchestrator. Per the plan's "do not build"
+# list: no Kubernetes, no microservices.
+#
+#   docker compose up -d --build
+#
+# Secrets and the domain live in .env beside this file, which is not in git.
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: web/Dockerfile
+    restart: unless-stopped
+    environment:
+      # Absolute URLs for the OpenGraph card. Without this a WhatsApp link
+      # preview points at localhost and shows nothing, which kills the one
+      # growth loop the plan has.
+      SKURIOUS_BASE_URL: ${SKURIOUS_BASE_URL:?set SKURIOUS_BASE_URL in .env}
+    volumes:
+      - skurious-data:/var/lib/skurious
+    expose:
+      - "8000"
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SKURIOUS_DOMAIN: ${SKURIOUS_DOMAIN:?set SKURIOUS_DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - app
+
+volumes:
+  skurious-data:
+  caddy-data:
+  caddy-config:

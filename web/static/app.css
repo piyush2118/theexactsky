@@ -1,0 +1,143 @@
+/* One stylesheet. The palette is the pichwai theme the prints use, so the site
+   and the product it sells look like the same object. */
+
+:root {
+  --ground: #0f1b3d;
+  --ground-2: #16244a;
+  --ink: #f3e9d2;
+  --gold: #c9a227;
+  --kumkum: #b23a48;
+  --muted: #8494b4;
+  --line: rgba(243, 233, 210, 0.14);
+  --serif: "EB Garamond", "Iowan Old Style", Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  /* The prints put grain over the indigo to stop it banding; the same trick
+     keeps a large flat field from looking like a solid block on a screen. */
+  background-image: radial-gradient(circle at 20% -10%, var(--ground-2), transparent 60%);
+}
+
+header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; padding: 1.5rem clamp(1rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--line);
+}
+.wordmark {
+  font-size: 1.4rem; letter-spacing: 0.28em; text-transform: lowercase;
+  color: var(--ink); text-decoration: none;
+}
+nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+nav a:hover, .wordmark:hover { color: var(--gold); }
+
+main { max-width: 68rem; margin: 0 auto; padding: clamp(1.5rem, 5vw, 4rem); }
+
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin: 0 0 0.6em; font-weight: 400; }
+h2 { font-weight: 400; letter-spacing: 0.02em; }
+.lede { font-size: 1.15rem; color: #ded3ba; max-width: 46rem; }
+.fine { font-size: 0.85rem; color: var(--muted); }
+a { color: var(--gold); }
+
+.error {
+  border-left: 3px solid var(--kumkum); background: rgba(178, 58, 72, 0.12);
+  padding: 0.75rem 1rem; margin: 1.5rem 0;
+}
+
+/* ---- form ---- */
+.card-form {
+  display: grid; gap: 1.25rem; margin: 2.5rem 0;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid var(--line); border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+}
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 34rem) { .row { grid-template-columns: 1fr; } }
+
+label { display: grid; gap: 0.35rem; position: relative; }
+label > span { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+label em { text-transform: none; letter-spacing: 0; font-style: normal; opacity: 0.7; }
+
+input[type="text"], input[type="date"], input[type="time"] {
+  width: 100%; padding: 0.7rem 0.85rem; font: inherit; font-size: 1rem;
+  color: var(--ink); background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--line); border-radius: 3px;
+}
+input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+
+.check { display: flex; align-items: center; gap: 0.6rem; }
+.check span { font-size: 0.95rem; color: var(--ink); text-transform: none; letter-spacing: 0; }
+
+button, .button {
+  display: inline-block; padding: 0.75rem 1.4rem; font: inherit; font-size: 1rem;
+  color: var(--ground); background: var(--gold); border: 1px solid var(--gold);
+  border-radius: 3px; cursor: pointer; text-decoration: none; text-align: center;
+}
+button:hover, .button:hover { filter: brightness(1.1); }
+.button.ghost { background: transparent; color: var(--gold); }
+
+/* ---- typeahead ---- */
+.suggestions {
+  position: absolute; z-index: 10; top: 100%; left: 0; right: 0; margin: 0.2rem 0 0;
+  padding: 0; list-style: none; max-height: 17rem; overflow-y: auto;
+  background: #101c40; border: 1px solid var(--line); border-radius: 3px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+.suggestions li { padding: 0.55rem 0.85rem; cursor: pointer; font-size: 0.95rem; }
+.suggestions li:hover, .suggestions li[aria-selected="true"] { background: rgba(201, 162, 39, 0.18); }
+.suggestions .tz { color: var(--muted); font-size: 0.8rem; }
+
+/* ---- result ---- */
+.result { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+@media (max-width: 52rem) { .result { grid-template-columns: 1fr; } }
+.result figure { margin: 0; }
+.result img { width: 100%; height: auto; border-radius: 3px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45); }
+.occasion { letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-size: 0.85rem; }
+
+table { border-collapse: collapse; width: 100%; }
+.facts th { text-align: left; font-weight: 400; color: var(--muted); font-size: 0.8rem;
+  letter-spacing: 0.14em; text-transform: uppercase; padding: 0.55rem 1rem 0.55rem 0;
+  vertical-align: top; white-space: nowrap; }
+.facts td { padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+.deva { font-size: 1.3rem; color: var(--kumkum); }
+
+details { margin: 1.5rem 0; }
+summary { cursor: pointer; color: var(--gold); }
+.grahas { margin-top: 0.75rem; font-size: 0.9rem; }
+.grahas th { text-align: left; color: var(--muted); font-weight: 400; border-bottom: 1px solid var(--line); padding: 0.3rem 0.6rem 0.3rem 0; }
+.grahas td { padding: 0.3rem 0.6rem 0.3rem 0; border-bottom: 1px solid var(--line); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.retro { color: var(--kumkum); font-size: 0.85em; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.75rem 0 1rem; }
+.footer-line { border-top: 1px solid var(--line); padding-top: 0.9rem; }
+
+/* ---- claims ---- */
+.claim { border: 1px solid var(--line); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.claim.has-pass { border-color: rgba(201, 162, 39, 0.4); }
+.claim h2 { margin: 0; font-size: 1.4rem; }
+.stamp { color: var(--muted); font-size: 0.9rem; margin: 0.3rem 0 0; }
+.warn { color: var(--kumkum); font-size: 0.85rem; margin: 0.4rem 0 0; }
+.constraints { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: 0.9rem; }
+.constraints li { display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start; }
+.mark { width: 0.85rem; height: 0.85rem; border-radius: 50%; margin-top: 0.45rem; border: 1.5px solid var(--kumkum); }
+.pass .mark { background: var(--gold); border-color: var(--gold); }
+.constraints p { margin: 0; }
+.stated { color: var(--muted); font-size: 0.9rem; }
+.computed { font-size: 0.98rem; }
+.summary { margin: 1.25rem 0 0; padding-top: 0.9rem; border-top: 1px solid var(--line); color: var(--muted); }
+
+.notes { margin-top: 4rem; }
+.notes dt { color: var(--gold); margin-top: 1.25rem; }
+.notes dd { margin: 0.25rem 0 0; color: #ded3ba; }
+
+footer { border-top: 1px solid var(--line); padding: 2rem clamp(1rem, 5vw, 4rem) 3rem; color: var(--muted); font-size: 0.9rem; }
+footer p { margin: 0.3rem 0; max-width: 44rem; }

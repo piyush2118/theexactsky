@@ -9,9 +9,10 @@ is a layout over that one computation.
 tables, pass/fail evidence and pictures. Prose that judges a match or a date is
 written by a named person, under their name, in a separate private repository.
 
-This is Stage 0 of [technical-plan.md](technical-plan.md): the engine and three
-pictures. Kundali, kuta, the birth-time band, panchanga, muhurta and the web app
-are Stage 2 and later, and are not built yet — see [Status](#status).
+This is Stage 0 of [technical-plan.md](technical-plan.md) — the engine and three
+pictures — plus a working website over it. Kundali, kuta, the birth-time band,
+panchanga and muhurta are Stage 2 and later, and are not built yet; see
+[Status](#status).
 
 ## Install
 
@@ -61,6 +62,42 @@ uv run sk conj find --bodies jupiter,saturn --from "-0007-01-01" \
     --to "-0005-12-31" --place jerusalem --calendar julian --render --out render3
 ```
 
+## The website
+
+```sh
+uv sync --project web
+cd web && uv run uvicorn app.main:app --reload --port 8000
+```
+
+Then open <http://127.0.0.1:8000>. One page: pick a date, a time and a town, and
+get the sky. The town typeahead answers to the name your family uses, so Bombay
+finds Mumbai and Devanagari works.
+
+| Route | What it does |
+|---|---|
+| `GET /` | the form |
+| `GET /geo?q=` | typeahead JSON out of `places.sqlite` |
+| `POST /sky` | validate, pack the inputs into a link, 303 to it |
+| `GET /s/<token>` | the result page, with OpenGraph tags for the link preview |
+| `GET /c/<token>.png` | the 1080×1350 card, cached on disk by content hash |
+| `GET /c/<token>.svg` | the same card as vector |
+| `POST /e` | share and download beacons |
+| `GET /claims` | the six Mahābhārata dates, evaluated live |
+| `GET /healthz` | |
+
+**Nothing is stored.** The link *is* the birth details: a version byte, the UTC
+minute, the GeoNames id, flags and a CRC-16, packed into 12 bytes and 16
+characters. Names never enter it — they are typed on the form and drawn into the
+picture as initials — so a forwarded card link cannot identify anybody. That is
+the plan's stateless design and, under the DPDP Act, the difference between
+holding personal data and not. The only table is `events`, which stores a
+session cookie, an action, and a *hash* of the token.
+
+A cold card takes about 220 ms and a cached one about 9 ms.
+
+To deploy, `web/compose.yaml` brings up uvicorn behind Caddy on one small VPS,
+with automatic certificates and no orchestrator.
+
 ## What the CLI can do
 
 ```sh
@@ -77,6 +114,27 @@ sk info                             # versions and data on disk
 A place can be a GeoNames id (`5097529`), a name (`Edison`, `Bombay`, `बंगलौर`),
 a named observer from `data/geo/places.yaml` (`kurukshetra`), or bare
 coordinates (`29.97,76.88@Asia/Kolkata`).
+
+## It is checked against work computed by other people
+
+Every test being self-consistent is not the same as being right: a suite that
+only checks the engine against itself passes just as happily when Swiss
+Ephemeris is misconfigured and silently falls back to its built-in
+approximation, which stops at 3000 BCE and would make the 5561 BCE plate quietly
+wrong. So `tests/test_reference.py` checks against three outside authorities:
+
+| Against | Result |
+|---|---|
+| **JPL DE421** via Skyfield — a separate ephemeris, library and implementation of light-time, aberration, precession and nutation | 7 bodies × 20 instants agree to **under 0.01″** |
+| **Hipparcos** (ESA) via Skyfield, matched by position | **93 bright stars** agree, worst separation **6.9″** — the gate allows 0.1° |
+| **The Indian Calendar Reform Committee's** definition of the Lahiri ayanamsa (23°15′00″ at 21 March 1956) | agrees to **0.8″** |
+| **The historical eclipse canon** — Bur-Sagale (763 BCE), Thales (585 BCE), Ugarit (1223 BCE) | all three land on their recorded dates |
+
+Fetch the reference data first:
+
+```sh
+uv run --project engine scripts/fetch_reference.py    # 17 MB, checksummed
+```
 
 ## Five things this gets right that are usually got wrong
 
@@ -117,16 +175,21 @@ engine/skurious/
   sky.py         SkyState; zenith-centred stereographic projection
   claims/        the dating-claim DSL, its evaluator, eclipse and conjunction search
   render/        SVG builder, themes, layouts, resvg wrapper
+  token.py       stateless card links: 12 bytes, 16 characters, no names
   cli.py         sk
 engine/data/     ephemeris, rule tables, claims, gazetteer, fonts
-engine/tests/    132 tests
+engine/tests/    174 tests, including the external reconciliation
+web/app/         FastAPI: the form, the typeahead, the card, the claims page
+web/templates/   three Jinja2 templates
+web/static/      one stylesheet, one typeahead
 scripts/         fetch and build the vendored data
 ```
 
 ## Tests
 
 ```sh
-uv run --project engine pytest
+uv run --project engine pytest      # 174
+uv run --project web pytest         # 22
 ```
 
 The suite covers the things that fail silently: calendar and timezone edge
@@ -146,14 +209,24 @@ Not built yet, and deliberately: `kundali`, `kuta`, `band`, `dasha`,
 `panchanga`, `muhurta`, the Typst document pipeline, and the web app. Those are
 Stage 2 and later in the plan.
 
-Two things need a person, not more code:
+Not built either: the **proof and mockup export** from the plan's days 13–14 —
+the watermarked proof a buyer approves before anything is printed, and the
+room-photo mockups for a listing. Stage 1 blocks on both.
+
+Three things need a person, not more code:
 
 1. **Four of the six Mahābhārata claims carry unverified citations** and
    placeholder days-of-year. Only the 5561 BCE (Vartak) and 3067 BCE (Achar)
    dates have been checked against a primary source. The files say so and the
    plate prints it; they should be corrected from the publications before the
    plate is posted anywhere.
-2. **The koota tables are not written yet.** When they are, the plan requires
+2. **A Jyotish program has not been consulted.** JPL settles the astronomy and
+   the Calendar Reform Committee settles the ayanamsa, but neither has an
+   opinion about Jyotish convention — apparent versus true position, geocentric
+   versus topocentric. Running the reference suite writes
+   `engine/tests/fixtures/jyotish_reconciliation.tsv`: twenty birth inputs with
+   our answers and two blank columns. Paste in Jagannatha Hora's and check.
+3. **The koota tables are not written yet.** When they are, the plan requires
    reconciling them against two independent programs on twenty fixed input pairs
    before anything goes live.
 

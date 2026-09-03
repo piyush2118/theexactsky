@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}{{ occasion or "The sky" }} — {{ place.name }}, {{ when }}{% endblock %}
+{% block description %}The sky over {{ place.label }} on {{ when }}. Moon in {{ nakshatra }}, pada {{ moon.pada }}.{% endblock %}
+
+{% block head %}
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ occasion or 'The sky' }} — {{ place.name }}">
+<meta property="og:description" content="{{ when }} · Moon in {{ nakshatra }}, pada {{ moon.pada }} · {{ phase }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1350">
+<meta property="og:url" content="{{ share_url }}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
+{% block main %}
+<article class="result">
+  <figure>
+    <img src="{{ card_url }}" width="1080" height="1350" alt="The sky over
+         {{ place.label }} on {{ when }}, with the nakshatra ring." loading="eager">
+  </figure>
+
+  <div class="details">
+    {% if names %}<h1>{{ names }}</h1>{% endif %}
+    {% if occasion %}<p class="occasion">{{ occasion }}</p>{% endif %}
+
+    <table class="facts">
+      <tr><th>When</th><td>{{ when }}</td></tr>
+      <tr><th>Where</th><td>{{ place.label }}<br><span class="fine">{{ place.coords }}</span></td></tr>
+      <tr><th>Moon</th><td>{{ nakshatra }}, pada {{ moon.pada }} — {{ phase }}</td></tr>
+      <tr><th>Rāśi</th><td>{{ moon.rasi_name }}</td></tr>
+      <tr><th>Naming syllable</th><td><span class="deva">{{ syllable_deva }}</span> {{ syllable_iast }}</td></tr>
+      <tr><th>Stars drawn</th><td>{{ star_count }} above the horizon</td></tr>
+    </table>
+
+    <details>
+      <summary>Every graha, at this instant</summary>
+      <table class="grahas">
+        <thead><tr><th>Body</th><th>Sidereal</th><th>Nakshatra</th><th>Pada</th><th></th></tr></thead>
+        <tbody>
+        {% for b in grahas %}
+          <tr>
+            <td>{{ b.label }}</td>
+            <td class="num">{{ "%.3f"|format(b.lon_sid) }}°</td>
+            <td>{{ b.nakshatra_name }}</td>
+            <td class="num">{{ b.pada }}</td>
+            <td>{% if b.retrograde %}<span class="retro">retrograde</span>{% endif %}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </details>
+
+    <div class="actions">
+      <a class="button" href="{{ card_url }}" download="skurious-{{ token }}.png"
+         data-beacon="card_download">Download the card</a>
+      <a class="button ghost" href="https://wa.me/?text={{ share_url|urlencode }}"
+         target="_blank" rel="noopener" data-beacon="share_click">Send on WhatsApp</a>
+      <button class="button ghost" type="button" id="copy"
+              data-url="{{ share_url }}">Copy link</button>
+    </div>
+
+    <p class="fine footer-line">{{ footer }}</p>
+    <p class="fine">This link carries the date, time and place — not the names.
+       Forwarding it is safe.</p>
+    <p><a href="/">Draw another sky</a></p>
+  </div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('[data-beacon]').forEach(function (el) {
+  el.addEventListener('click', function () {
+    var body = new FormData();
+    body.append('type', el.dataset.beacon);
+    body.append('token', {{ token|tojson }});
+    navigator.sendBeacon('/e', body);
+  });
+});
+var copy = document.getElementById('copy');
+copy.addEventListener('click', function () {
+  navigator.clipboard.writeText(copy.dataset.url).then(function () {
+    var was = copy.textContent;
+    copy.textContent = 'Copied';
+    setTimeout(function () { copy.textContent = was; }, 1600);
+  });
+});
+</script>
+{% endblock %}
