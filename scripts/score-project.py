@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Collect objective evidence for the Stage 2 quality rubric.
+"""Collect evidence for the Stage 2 hard-gate rubric.
 
 This script deliberately does *not* ask an LLM to invent a 0-100 score. It runs
-mechanical gates that the repository can actually prove and leaves subjective or
-human/external gates as UNVERIFIED until evidence exists.
+mechanical gates that the repository can actually prove. Gates requiring an
+architecture/licensing/Jyotish/CI review can be promoted only through explicit
+recorded evidence in `plans/stage-2/GATE_EVIDENCE.json`.
 
 Usage from the repository root:
 
@@ -31,6 +32,9 @@ from typing import Sequence
 ROOT = Path(__file__).resolve().parents[1]
 ENGINE = ROOT / "engine"
 WEB = ROOT / "web"
+MANUAL_EVIDENCE = ROOT / "plans/stage-2/GATE_EVIDENCE.json"
+MANUAL_GATE_IDS = {"G7", "G8", "G9", "G10"}
+VALID_STATUSES = {"PASS", "FAIL", "UNVERIFIED"}
 
 
 @dataclass
@@ -243,7 +247,7 @@ def g9_jyotish_reconciliation() -> Gate:
             if present
             else "no completed Stage 2 two-program/20-pair reconciliation artifact detected"
         )
-        + "; this gate must be promoted manually only after both independent Jyotish references were actually compared",
+        + "; this gate must be promoted only after both independent Jyotish references were actually compared",
     )
 
 
@@ -255,6 +259,43 @@ def g10_integrated_release() -> Gate:
         "local scorer cannot establish GitHub release-candidate CI status; verify the exact candidate commit in GitHub Actions",
         "bash scripts/check-full.sh && verify GitHub Actions on the same commit",
     )
+
+
+def apply_manual_evidence(gates: list[Gate]) -> None:
+    """Apply explicit review evidence without allowing it to hide mechanical fails."""
+    if not MANUAL_EVIDENCE.exists():
+        return
+
+    try:
+        records = json.loads(MANUAL_EVIDENCE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        for gate in gates:
+            if gate.id in MANUAL_GATE_IDS and gate.status != "FAIL":
+                gate.status = "FAIL"
+                gate.evidence += f"\nmanual evidence file is invalid: {exc}"
+        return
+
+    for gate in gates:
+        if gate.id not in MANUAL_GATE_IDS or gate.status == "FAIL":
+            continue
+        record = records.get(gate.id)
+        if not isinstance(record, dict):
+            continue
+        status = str(record.get("status", "UNVERIFIED")).upper()
+        evidence = str(record.get("evidence", "")).strip()
+
+        if status not in VALID_STATUSES:
+            gate.status = "FAIL"
+            gate.evidence += f"\ninvalid manual gate status {status!r}"
+            continue
+        if status == "PASS" and len(evidence) < 20:
+            gate.status = "FAIL"
+            gate.evidence += "\nmanual PASS rejected: evidence is missing or too vague"
+            continue
+
+        gate.status = status
+        if evidence:
+            gate.evidence += f"\nRecorded review evidence: {evidence}"
 
 
 def main() -> int:
@@ -279,6 +320,7 @@ def main() -> int:
         g9_jyotish_reconciliation(),
         g10_integrated_release(),
     ]
+    apply_manual_evidence(gates)
 
     summary = {status: sum(g.status == status for g in gates) for status in ("PASS", "FAIL", "UNVERIFIED")}
     payload = {
@@ -286,9 +328,10 @@ def main() -> int:
         "milestone": "stage-2-forwardable-compatibility-card",
         "hard_gates": [asdict(g) for g in gates],
         "summary": summary,
+        "manual_evidence_file": str(MANUAL_EVIDENCE.relative_to(ROOT)),
         "weighted_quality_score": None,
         "weighted_score_note": (
-            "Not auto-generated. Score the 0-4 domains in QUALITY_SCORE.md from this machine evidence plus "
+            "Not auto-generated. Score the 0-4 domains in QUALITY_SCORE.md from this gate evidence plus "
             "product/browser/provenance/reconciliation review."
         ),
     }
