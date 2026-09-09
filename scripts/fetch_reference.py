@@ -70,6 +70,55 @@ def download(url: str, dest: Path) -> None:
     tmp.replace(dest)
 
 
+def canonicalize_hipparcos(path: Path) -> None:
+    """Strip unstable VizieR response metadata and keep only catalogue rows.
+
+    VizieR's dynamic TSV endpoint can change comments/metadata without changing
+    the Hipparcos rows. Hashing that transport wrapper made CI fail on harmless
+    server-side metadata drift. The reconciliation tests consume only the six
+    requested data columns, so checksum the canonical scientific payload instead.
+    """
+    rows: list[tuple[int, float, float, float, float, float]] = []
+    for line in path.read_text(encoding="latin-1").splitlines():
+        if not line.strip() or line.startswith("#") or line.startswith("---"):
+            continue
+        parts = [part.strip() for part in line.split("\t")]
+        if len(parts) < 6 or not parts[0].isdigit():
+            continue
+        try:
+            row = (
+                int(parts[0]),
+                float(parts[1]),
+                float(parts[2]),
+                float(parts[3]),
+                float(parts[4]),
+                float(parts[5]),
+            )
+        except ValueError:
+            continue
+        rows.append(row)
+
+    # The reference test needs at least fifty bright stars. A tiny/empty result
+    # is more likely a changed/error response than valid catalogue data.
+    if len(rows) < 50:
+        raise RuntimeError(
+            f"Hipparcos query returned only {len(rows)} usable rows; "
+            "refusing to canonicalize an incomplete reference"
+        )
+
+    rows.sort(key=lambda row: row[0])
+    if len({row[0] for row in rows}) != len(rows):
+        raise RuntimeError("Hipparcos query returned duplicate HIP identifiers")
+
+    # Fixed numeric formatting makes the checksum describe the selected
+    # scientific values, not whitespace/formatting chosen by the HTTP service.
+    canonical = [
+        f"{hip}\t{ra:.10f}\t{dec:.10f}\t{pm_ra:.5f}\t{pm_dec:.5f}\t{vmag:.5f}"
+        for hip, ra, dec, pm_ra, pm_dec, vmag in rows
+    ]
+    path.write_text("\n".join(canonical) + "\n", encoding="ascii")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--write-manifest", action="store_true")
@@ -85,12 +134,18 @@ def main() -> int:
         if args.force or not dest.exists():
             print(f"fetching {name} ...", flush=True)
             download(url, dest)
+        if name == "hip_bright.tsv":
+            canonicalize_hipparcos(dest)
         digest = sha256(dest)
         if args.write_manifest:
             manifest[name] = digest
         elif manifest.get(name) not in (None, digest):
             failures.append(name)
-            print(f"  {name}: CHECKSUM MISMATCH", file=sys.stderr)
+            print(
+                f"  {name}: CHECKSUM MISMATCH "
+                f"(expected {manifest.get(name)}, got {digest})",
+                file=sys.stderr,
+            )
 
     if args.write_manifest:
         MANIFEST.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
