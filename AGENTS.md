@@ -33,6 +33,35 @@ When sources disagree, use this order:
 
 Do not implement a planned feature merely because it appears in the roadmap or technical plan. Inspect the current tree and tests first. If documentation is stale relative to code, do not guess; preserve current behavior unless the task asks to change it, and update the affected documentation when appropriate.
 
+## Active milestone, rubric, and loop
+
+For autonomous/"finish the project" work, the current bounded finish line is defined in:
+
+- `PROJECT_DONE.md` — exact Stage 2 scope and stop condition;
+- `QUALITY_SCORE.md` — hard release gates plus the weighted 0–100 hill-climb rubric;
+- `plans/stage-2/EXEC_PLAN.md` — current evidence, dependency map, workstreams, blockers, and next action;
+- `plans/stage-2/RESULTS.md` — completed loop iterations and evidence.
+
+Do not expand an autonomous loop into Stage 3+ unless the user explicitly changes the milestone.
+
+Useful harness skills:
+
+- `.agents/skills/scientific-change/SKILL.md` — use when numerical astronomy, sidereal/Jyotish conventions, historical claims, or sourced rule data can change;
+- `.agents/skills/loop-runner/SKILL.md` — use for multi-iteration Stage 2 hill-climbing/project-completion work.
+
+Preferred feedback commands from the repository root:
+
+```bash
+python scripts/score-project.py
+bash scripts/check-fast.sh
+bash scripts/check-science.sh
+bash scripts/check-render.sh
+bash scripts/check-web.sh
+bash scripts/check-full.sh
+```
+
+`score-project.py` gathers objective hard-gate evidence; it intentionally does not fabricate the subjective weighted score. Browser/product review, architecture review, licensing review, Jyotish reconciliation, and exact release-candidate CI still require their real evidence.
+
 ## 3. Repository map and ownership
 
 ### Engine
@@ -63,6 +92,8 @@ Do not implement a planned feature merely because it appears in the roadmap or t
 
 - `engine/tests/` — unit, regression, rendering, and independent-reference tests.
 - `.github/workflows/ci.yml` — pinned CI path, including data setup, engine/web tests, canonical renders, and determinism checks.
+- `scripts/check-*.sh` — local feedback layers; `check-full.sh` is the heavy release-candidate approximation.
+- `scripts/score-project.py` — machine evidence for the hard-gate rubric.
 
 ## 4. Hard invariants
 
@@ -164,7 +195,7 @@ Do not add persistent personal-data storage as a convenience refactor.
 
 The roadmap contains future modules/features. Do not build them opportunistically while solving an unrelated task.
 
-Prefer the smallest coherent change that satisfies the user request and preserves the architecture. Avoid speculative framework migrations or broad refactors unless they directly reduce risk or are requested.
+For autonomous Stage 2 work, `PROJECT_DONE.md` is the scope contract. Prefer the smallest coherent change that improves a named rubric gap or is a documented prerequisite. Avoid speculative framework migrations or broad refactors unless they directly reduce risk or are requested.
 
 ### 4.10 Licensing/data provenance
 
@@ -180,6 +211,7 @@ Before editing:
 2. Identify which truth lane(s) the change touches: astronomy, Jyotish convention, historical attribution, presentation/privacy.
 3. Find the existing owner of the behavior; do not create a second owner.
 4. Identify what evidence decides correctness: unit/boundary tests, independent astronomical reference, cited rule table, primary historical source, golden render, or browser behavior.
+5. For project-completion work, identify the exact rubric domain/gate and acceptance criteria before writing.
 
 While editing:
 
@@ -195,10 +227,17 @@ After editing:
 2. Run the broader suite required by the change class.
 3. Review the diff for unintended architecture, source/provenance, privacy, or deterministic-output changes.
 4. Report any skipped/unavailable independent checks instead of presenting them as passed.
+5. For loop work, rescore only from actual evidence and record the outcome in `plans/stage-2/RESULTS.md`.
 
 ## 6. Verification matrix
 
-Use the commands that match the change. Do not run heavy checks repeatedly without reason, but do not skip a required gate.
+Prefer the root check scripts for routine agent loops; the direct commands below are the underlying focused paths.
+
+### Fast feedback
+
+```bash
+bash scripts/check-fast.sh
+```
 
 ### Pure time/sidereal arithmetic
 
@@ -208,6 +247,12 @@ uv run pytest -q tests/test_time.py tests/test_sidereal.py
 ```
 
 ### Ephemeris / stars / numerical astronomy
+
+```bash
+bash scripts/check-science.sh
+```
+
+or directly:
 
 ```bash
 cd engine
@@ -228,6 +273,12 @@ If the change can move astronomical results/search behavior, also run the releva
 ### Rendering / themes / SVG / raster
 
 ```bash
+bash scripts/check-render.sh
+```
+
+or directly:
+
+```bash
 cd engine
 uv run pytest -q tests/test_render.py -rs
 ```
@@ -246,22 +297,26 @@ uv run pytest -q
 ### Web routes/templates/static behavior
 
 ```bash
-cd web
-uv run pytest -q
+bash scripts/check-web.sh
 ```
 
 For visual UI work, use a real browser/browser tool when available; a `200` response alone is not visual verification.
 
-### Full local test pass
+### Machine rubric evidence
 
 ```bash
-cd engine
-uv run pytest -q
-cd ../web
-uv run pytest -q
+python scripts/score-project.py
 ```
 
-For substantial changes, CI in `.github/workflows/ci.yml` is the final repository-level gate because it installs the pinned renderer/data and reproduces the canonical renders twice.
+Use `--strict` only for a release-candidate gate, because Stage 2 development is expected to contain legitimate `UNVERIFIED` gates before it is complete.
+
+### Full release-candidate local check
+
+```bash
+bash scripts/check-full.sh
+```
+
+This intentionally fails as `UNVERIFIED` when required reference data or `resvg` are unavailable. For substantial changes, CI in `.github/workflows/ci.yml` remains the final repository-level gate because it installs the pinned renderer/data and reproduces the canonical renders twice.
 
 ## 7. Multi-agent work
 
@@ -274,11 +329,11 @@ For writes:
 - avoid multiple agents editing the same files concurrently;
 - use an independent reviewer for high-impact astronomy, provenance, privacy, or rendering changes when agent tooling supports it.
 
-Do not spawn agents merely to increase agent count.
+For project-completion loops, use the task-selection/anti-thrashing rules in the `loop-runner` skill. Do not spawn agents merely to increase agent count.
 
 ## 8. Definition of done
 
-A change is done when:
+For ordinary tasks, a change is done when:
 
 - the requested behavior is implemented;
 - relevant targeted tests pass;
@@ -289,3 +344,5 @@ A change is done when:
 - privacy/statelessness is preserved unless intentionally changed;
 - intentional render changes have been visually/diff reviewed;
 - affected documentation is consistent with the resulting code when the task changes architecture or product status.
+
+For autonomous Stage 2 project completion, the stricter release condition in `PROJECT_DONE.md` and `QUALITY_SCORE.md` controls completion. Stop when it is satisfied; do not continue into later roadmap stages automatically.
