@@ -31,6 +31,8 @@ import argparse
 import hashlib
 import json
 import sys
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -38,19 +40,28 @@ ROOT = Path(__file__).resolve().parent.parent / "engine"
 REF = ROOT / "data" / "_reference"
 MANIFEST = Path(__file__).resolve().parent / "reference_manifest.json"
 
+HIP_QUERY = (
+    "viz-bin/asu-tsv?-source=I/239/hip_main"
+    "&-out=HIP,RAICRS,DEICRS,pmRA,pmDE,Vmag&Vmag=%3C2.6"
+    "&-out.max=300&-out.meta="
+)
+
 FILES = {
-    # JPL planetary and lunar ephemeris, 1900-2050. Enough for the modern
-    # reconciliation instants; the ancient checks are against the eclipse canon,
-    # which needs no file.
-    "de421.bsp": "https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/de421.bsp",
+    # DE421 is mirrored across JPL/NAIF mission archives. The bytes are checked
+    # after download, so a mirror only improves availability; it does not weaken
+    # provenance or permit a different ephemeris through silently.
+    "de421.bsp": (
+        "https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/de421.bsp",
+        "https://naif.jpl.nasa.gov/pub/naif/SMAP/kernels/spk/de421.bsp",
+    ),
     # Every Hipparcos star brighter than V = 2.6, with ICRS positions at epoch
-    # J1991.25 and proper motions. A hundred rows rather than the whole 118,218,
-    # because the gate asks about fifty bright stars and streaming the full
-    # catalogue out of VizieR takes minutes and frequently times out.
-    "hip_bright.tsv":
-        "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=I/239/hip_main"
-        "&-out=HIP,RAICRS,DEICRS,pmRA,pmDE,Vmag&Vmag=%3C2.6"
-        "&-out.max=300&-out.meta=",
+    # J1991.25 and proper motions. A small subset is enough for the independent
+    # bright-star gate. CDS has multiple VizieR mirrors; the scientific payload
+    # is canonicalized before checksum comparison.
+    "hip_bright.tsv": (
+        f"https://vizier.cds.unistra.fr/{HIP_QUERY}",
+        f"https://vizier.cfa.harvard.edu/{HIP_QUERY}",
+    ),
 }
 
 
@@ -62,12 +73,83 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def download(url: str, dest: Path) -> None:
+def download(urls: tuple[str, ...], dest: Path, *, attempts_per_url: int = 2) -> None:
+    """Download from a verified mirror set, retrying transient network failures."""
     tmp = dest.with_suffix(dest.suffix + ".part")
-    with urllib.request.urlopen(url, timeout=600) as r, tmp.open("wb") as fh:
-        while chunk := r.read(1 << 20):
-            fh.write(chunk)
-    tmp.replace(dest)
+    errors: list[str] = []
+
+    for url in urls:
+        for attempt in range(1, attempts_per_url + 1):
+            try:
+                tmp.unlink(missing_ok=True)
+                request = urllib.request.Request(
+                    url,
+                    headers={"User-Agent": "theexactsky-reference-fetch/1"},
+                )
+                with urllib.request.urlopen(request, timeout=120) as response, tmp.open("wb") as fh:
+                    while chunk := response.read(1 << 20):
+                        fh.write(chunk)
+                tmp.replace(dest)
+                return
+            except (OSError, TimeoutError, urllib.error.URLError) as exc:
+                errors.append(f"{url} attempt {attempt}: {exc}")
+                tmp.unlink(missing_ok=True)
+                if attempt < attempts_per_url:
+                    time.sleep(2.0)
+
+    raise RuntimeError(
+        f"could not fetch {dest.name} from any configured mirror:\n  "
+        + "\n  ".join(errors)
+    )
+
+
+def canonicalize_hipparcos(path: Path) -> None:
+    """Strip unstable VizieR response metadata and keep only catalogue rows.
+
+    VizieR's dynamic TSV endpoint can change comments/metadata without changing
+    the Hipparcos rows. Hashing that transport wrapper made CI fail on harmless
+    server-side metadata drift. The reconciliation tests consume only the six
+    requested data columns, so checksum the canonical scientific payload instead.
+    """
+    rows: list[tuple[int, float, float, float, float, float]] = []
+    for line in path.read_text(encoding="latin-1").splitlines():
+        if not line.strip() or line.startswith("#") or line.startswith("---"):
+            continue
+        parts = [part.strip() for part in line.split("\t")]
+        if len(parts) < 6 or not parts[0].isdigit():
+            continue
+        try:
+            row = (
+                int(parts[0]),
+                float(parts[1]),
+                float(parts[2]),
+                float(parts[3]),
+                float(parts[4]),
+                float(parts[5]),
+            )
+        except ValueError:
+            continue
+        rows.append(row)
+
+    # The reference test needs at least fifty bright stars. A tiny/empty result
+    # is more likely a changed/error response than valid catalogue data.
+    if len(rows) < 50:
+        raise RuntimeError(
+            f"Hipparcos query returned only {len(rows)} usable rows; "
+            "refusing to canonicalize an incomplete reference"
+        )
+
+    rows.sort(key=lambda row: row[0])
+    if len({row[0] for row in rows}) != len(rows):
+        raise RuntimeError("Hipparcos query returned duplicate HIP identifiers")
+
+    # Fixed numeric formatting makes the checksum describe the selected
+    # scientific values, not whitespace/formatting chosen by the HTTP service.
+    canonical = [
+        f"{hip}\t{ra:.10f}\t{dec:.10f}\t{pm_ra:.5f}\t{pm_dec:.5f}\t{vmag:.5f}"
+        for hip, ra, dec, pm_ra, pm_dec, vmag in rows
+    ]
+    path.write_text("\n".join(canonical) + "\n", encoding="ascii")
 
 
 def main() -> int:
@@ -80,17 +162,23 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
 
     failures = []
-    for name, url in FILES.items():
+    for name, urls in FILES.items():
         dest = REF / name
         if args.force or not dest.exists():
             print(f"fetching {name} ...", flush=True)
-            download(url, dest)
+            download(urls, dest)
+        if name == "hip_bright.tsv":
+            canonicalize_hipparcos(dest)
         digest = sha256(dest)
         if args.write_manifest:
             manifest[name] = digest
         elif manifest.get(name) not in (None, digest):
             failures.append(name)
-            print(f"  {name}: CHECKSUM MISMATCH", file=sys.stderr)
+            print(
+                f"  {name}: CHECKSUM MISMATCH "
+                f"(expected {manifest.get(name)}, got {digest})",
+                file=sys.stderr,
+            )
 
     if args.write_manifest:
         MANIFEST.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")

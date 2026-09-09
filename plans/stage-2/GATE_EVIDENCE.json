@@ -1,0 +1,18 @@
+{
+  "G7": {
+    "status": "UNVERIFIED",
+    "evidence": "Complete an architecture review confirming Stage 2 web/layout code does not duplicate astronomy or Jyotish computation."
+  },
+  "G8": {
+    "status": "UNVERIFIED",
+    "evidence": "Review the release candidate's new dependencies/data/assets and confirm licensing and redistribution compatibility."
+  },
+  "G9": {
+    "status": "UNVERIFIED",
+    "evidence": "Complete and record the required 20-pair comparison against two independent Jyotish programs/implementations."
+  },
+  "G10": {
+    "status": "UNVERIFIED",
+    "evidence": "Record the successful GitHub Actions URL/check for the exact release-candidate commit."
+  }
+}

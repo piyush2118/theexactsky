@@ -14,14 +14,13 @@ atmosphere.
 
 from __future__ import annotations
 
-import functools
 from dataclasses import dataclass
 
 import swisseph as swe
 
 from .errors import SkuriousError
-from .paths import EPHE, require
 from .sidereal import Scheme, nakshatra, norm360, pada, rasi
+from .swiss import init_ephemeris
 
 FLAGS = swe.FLG_SWIEPH | swe.FLG_SPEED
 
@@ -112,13 +111,6 @@ class MoonPhase:
             return quarter
         shape = "crescent" if e < 90 else "gibbous"
         return f"{'waxing' if self.waxing else 'waning'} {shape}"
-
-
-@functools.lru_cache(maxsize=1)
-def init_ephemeris() -> None:
-    """Point Swiss at the vendored ephemeris exactly once per process."""
-    require(EPHE / "sepl_18.se1", "scripts/fetch_ephe.py")
-    swe.set_ephe_path(str(EPHE))
 
 
 def _calc(jd: float, ipl: int, flags: int) -> tuple[float, ...]:
