@@ -29,6 +29,7 @@ import yaml
 from .errors import (AmbiguousLocalTime, NonexistentLocalTime,
                      OutOfEphemerisRange, SkuriousError)
 from .paths import RULES
+from .swiss import init_ephemeris
 
 # The Gregorian reform: 1582-10-04 Julian was followed by 1582-10-15 Gregorian.
 GREGORIAN_START = (1582, 10, 15)
@@ -166,6 +167,10 @@ def _build(jd_ut: float, calendar: str, timescale: str, offset: float,
         raise OutOfEphemerisRange(
             f"year {era_year(year)} is outside the vendored ephemeris "
             f"({era_year(lo)} to {era_year(hi)})")
+    # `swe.deltat_ex` depends on Swiss's process-global ephemeris path just like
+    # body calculations do. Initialize it here so a fresh process can construct
+    # an Instant without relying on some earlier ephem call/test to set state.
+    init_ephemeris()
     dt_seconds = swe.deltat_ex(jd_ut, swe.FLG_SWIEPH) * 86400.0
     sigma, extrapolated = delta_t_sigma(year)
     return Instant(
