@@ -8,6 +8,17 @@ if ! command -v resvg >/dev/null 2>&1; then
   exit 2
 fi
 
+if command -v sha256sum >/dev/null 2>&1; then
+  HASH_CREATE=(sha256sum)
+  HASH_CHECK=(sha256sum -c)
+elif command -v shasum >/dev/null 2>&1; then
+  HASH_CREATE=(shasum -a 256)
+  HASH_CHECK=(shasum -a 256 -c)
+else
+  echo "check-full: UNVERIFIED — need sha256sum or shasum for determinism verification" >&2
+  exit 2
+fi
+
 required=(
   "$ROOT/engine/data/ephe/sepl_18.se1"
   "$ROOT/engine/data/_reference/de421.bsp"
@@ -20,6 +31,9 @@ for path in "${required[@]}"; do
     exit 2
   fi
 done
+
+HASH_FILE="$(mktemp "${TMPDIR:-/tmp}/skurious-first.XXXXXX")"
+trap 'rm -f "$HASH_FILE"' EXIT
 
 cd "$ROOT/engine"
 uv run pytest -q
@@ -38,7 +52,7 @@ uv run sk conj find --bodies jupiter,saturn --from "-0007-01-01" \
   --to "-0005-12-31" --place jerusalem --calendar julian --render \
   --size 8x10 --out render3
 
-sha256sum out/*.svg out/*.png > /tmp/skurious-first.sha
+"${HASH_CREATE[@]}" out/*.svg out/*.png > "$HASH_FILE"
 
 uv run sk render sky --date 2019-02-14 --time 19:30 --place 5097529 \
   --size 8x10 --names "Priya,Arjun" --occasion "Wedding night" --out render1
@@ -47,7 +61,6 @@ uv run sk conj find --bodies jupiter,saturn --from "-0007-01-01" \
   --to "-0005-12-31" --place jerusalem --calendar julian --render \
   --size 8x10 --out render3
 
-sha256sum -c /tmp/skurious-first.sha
-rm -f /tmp/skurious-first.sha
+"${HASH_CHECK[@]}" "$HASH_FILE"
 
 echo "check-full: PASS"
